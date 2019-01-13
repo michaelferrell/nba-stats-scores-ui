@@ -1,0 +1,5 @@
+/* Toggle */
+@toggleLaneWidth: 2.9rem;
+@toggleLabelDistance: @toggleLaneWidth + .6rem;
+
+@handleBoxShadow: @subtleShadow, 0px 0px 0px 1px #8d9c93 inset;

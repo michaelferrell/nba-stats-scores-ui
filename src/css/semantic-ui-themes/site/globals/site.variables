@@ -1,0 +1,24 @@
+/*******************************
+         Site Settings
+*******************************/
+
+/*-------------------
+       Fonts
+--------------------*/
+
+@fontName        : 'Roboto';
+@headerFont      : @fontName;
+@pageFont        : @fontName;
+@googleFontSizes : '100,300,400,500,700';
+
+/*-------------------
+        Page
+--------------------*/
+
+/* @textColor : @exampleColor; */
+
+/*-------------------
+  Colors
+--------------------*/
+
+/* @exampleColor:  #f9f9f9; */
