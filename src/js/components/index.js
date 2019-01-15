@@ -104,6 +104,7 @@ export default class extends Component {
     const team = this.props.team
     const modal = this.props.modal
     const fetching = this.props.schedule.fetching
+    let dateFilter = this.props.schedule.dateFilter
     let filtered = this.props.schedule.filtered
     return (
       <AppBackground>
@@ -114,30 +115,32 @@ export default class extends Component {
           {Object.keys(filtered).length > 0 &&
             !fetching && (
               <React.Fragment>
-                {!team.selected && (
-                  <Button
-                    as={InvertedButton}
-                    size="tiny"
-                    inverted
-                    onClick={this.handlePrevious}
-                  >
-                    Load Previous
-                  </Button>
-                )}
-                <GameList {...this.props} />
-                <MarginTop value={1.5}>
-                  {!team.selected && (
+                {!team.selected &&
+                  !dateFilter && (
                     <Button
                       as={InvertedButton}
                       size="tiny"
                       inverted
-                      onClick={() => {
-                        this.handleUpcoming()
-                      }}
+                      onClick={this.handlePrevious}
                     >
-                      Load More
+                      Load Previous
                     </Button>
                   )}
+                <GameList {...this.props} />
+                <MarginTop value={1.5}>
+                  {!team.selected &&
+                    !dateFilter && (
+                      <Button
+                        as={InvertedButton}
+                        size="tiny"
+                        inverted
+                        onClick={() => {
+                          this.handleUpcoming()
+                        }}
+                      >
+                        Load More
+                      </Button>
+                    )}
                 </MarginTop>
               </React.Fragment>
             )}

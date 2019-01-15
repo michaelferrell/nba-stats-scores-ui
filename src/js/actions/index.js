@@ -4,10 +4,12 @@ export { fetchPlayers } from "./Player"
 
 export {
   fetchSchedule,
+  getSchedule,
   getPreviousGames,
   getUpcomingGames,
   getLiveGame,
-  filterByDate
+  filterByDate,
+  removeFilterByDate
 } from "./Schedule"
 
 export { fetchTeamStandings, filterByTeam } from "./Team"

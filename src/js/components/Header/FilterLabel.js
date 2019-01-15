@@ -2,10 +2,10 @@ import React from "react"
 import { Icon } from "semantic-ui-react"
 import styled from "styled-components"
 
-const PrimaryLabel = styled.span``
+import { formatDate } from "./../../helpers/formatDate"
 
-const SecondaryLabel = styled.span`
-  opacity: 0.65;
+const PrimaryLabel = styled.span`
+  cursor: pointer;
 `
 
 const LabelIcon = styled.i`
@@ -15,11 +15,20 @@ const LabelIcon = styled.i`
   }
 `
 
-export default ({ label }) => (
-  <span>
+const formatLabel = date => {
+  const d = formatDate(date)
+  return d.day_abbr + ", " + d.month_abbr + " " + d.date
+}
+
+export default ({ dateFilter, handleOpen, handleRemove }) =>
+  dateFilter ? (
     <PrimaryLabel>
-      <Icon as={LabelIcon} name="calendar alternate outline" />
-      {label}
+      <Icon as={LabelIcon} name="remove" onClick={handleRemove} />
+      <span onClick={handleOpen}>{formatLabel(dateFilter)}</span>
     </PrimaryLabel>
-  </span>
-)
+  ) : (
+    <PrimaryLabel onClick={handleOpen}>
+      <Icon as={LabelIcon} name="calendar alternate outline" />
+      Choose Date
+    </PrimaryLabel>
+  )

@@ -29,6 +29,17 @@ export default (state = default_state, action) => {
         dateFilterFrom: payload.dateFilterFrom,
         dateFilterTo: payload.dateFilterTo
       }
+    case "GET_SCHEDULE_SUCCESS":
+      return {
+        ...state,
+        fetching: false,
+        full: { ...payload.full },
+        filtered: { ...payload.filtered },
+        active: { ...payload.active },
+        dateFilter: payload.dateFilter,
+        dateFilterFrom: payload.dateFilterFrom,
+        dateFilterTo: payload.dateFilterTo
+      }
     case "FILTER_SCHEDULE_REQUEST":
       return {
         ...state,

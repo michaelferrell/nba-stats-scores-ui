@@ -46,20 +46,6 @@ const StyledCalendar = styled.div`
   }
 `
 
-const StyledPopup = styled.div`
-  &.ui.popup {
-    padding: 0;
-  }
-  @media (max-width: 500px) {
-    &.ui.popup {
-      max-width: 96% !important;
-      margin-left: 2% !important;
-      left: 0 !important;
-      top: 2em !important;
-    }
-  }
-`
-
 const ICON_SIZE = 20
 const CloseIcon = styled.i`
   position: absolute;
@@ -76,14 +62,7 @@ const minDate = new Date("9/1/18")
 const maxDate = new Date("5/1/19")
 
 export default ({ handleChange, handleClose, open, value, trigger }) => (
-  <Popup
-    // as={StyledPopup}
-    basic
-    on="click"
-    position="bottom left"
-    open={open}
-    trigger={trigger}
-  >
+  <Popup basic on="click" position="bottom left" open={open} trigger={trigger}>
     <Icon as={CloseIcon} onClick={handleClose} name="close" />
     <StyledCalendar>
       <Calendar

@@ -1,5 +1,7 @@
 import Cabinet from "cabinet-storage"
 
+import { filterByTeam } from "./"
+
 import { formatActiveGames } from "./../helpers/formatActiveGames"
 import { scheduleByMonth } from "./../helpers/scheduleByMonth"
 import { scheduleByDate } from "./../helpers/scheduleByDate"
@@ -116,6 +118,44 @@ export const fetchSchedule = () => dispatch => {
     })
 }
 
+const getScheduleSuccess = payload => ({
+  type: "GET_SCHEDULE_SUCCESS",
+  payload
+})
+
+export const getSchedule = () => (dispatch, getState) => {
+  let schedule = getState().schedule.full
+  let active = getState().schedule.active
+  if (Object.keys(schedule).length === 0 || Object.keys(active).length === 0) {
+    dispatch(fetchSchedule())
+    return
+  }
+  let filtered = {}
+  let dateFilter = null
+  const today = new Date()
+  const tomorrow = getTomorrowsDate(today)
+
+  schedule[MONTH_NAMES[today.getMonth()]].map(g => {
+    if (getDatesInRange(DAYS_AHEAD).indexOf(g.game_code) > -1) {
+      if (filtered[g.game_code] === undefined) {
+        filtered[g.game_code] = { games: [], date: g.date }
+      }
+      filtered[g.game_code].games.push(g)
+    }
+  })
+
+  dispatch(
+    getScheduleSuccess({
+      full: schedule,
+      filtered,
+      active,
+      dateFilter,
+      dateFilterFrom: today,
+      dateFilterTo: tomorrow
+    })
+  )
+}
+
 const getUpcoming = payload => ({
   type: "GET_UPCOMING_GAMES",
   payload
@@ -153,7 +193,14 @@ const filterDate = payload => ({
   payload
 })
 
-const filterTeamScheduleByDate = () => {}
+export const removeFilterByDate = () => (dispatch, getState) => {
+  let team = getState().team
+  if (team.selected) {
+    dispatch(filterByTeam(team.selected.id))
+  } else {
+    dispatch(getSchedule())
+  }
+}
 
 export const filterByDate = (schedule, date) => (dispatch, getState) => {
   let team = getState().team

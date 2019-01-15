@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import styled from "styled-components"
-import { Button, Grid, Menu, Dropdown, Popup, Icon } from "semantic-ui-react"
+import { Button, Grid, Menu, Dropdown } from "semantic-ui-react"
 
 import Calendar from "./Calendar"
 import FilterLabel from "./FilterLabel"
@@ -12,7 +12,6 @@ import {
   UnpaddedColumn
 } from "./../Layout/"
 
-import { formatDate } from "./../../helpers/formatDate"
 import { COLOR, TEAMS } from "./../../constants/"
 
 const FilterBar = styled.div`
@@ -29,6 +28,7 @@ const FilterBar = styled.div`
 `
 
 const LinkItem = styled.a`
+  cursor: default !important;
   &:hover {
     color: ${COLOR.silver} !important;
   }
@@ -71,14 +71,6 @@ export default class extends Component {
     return options
   }
 
-  setFilterLabel = date => {
-    if (date === null) {
-      return "Choose Date"
-    }
-    const d = formatDate(date)
-    return d.day_abbr + ", " + d.month_abbr + " " + d.date
-  }
-
   handleStandings = () => {
     const { teamStandingsModal, modal } = this.props
     if (!modal.team_standings) {
@@ -87,21 +79,17 @@ export default class extends Component {
   }
 
   handleFilterByTeam = teamId => {
-    const { schedule, team, fetchSchedule, filterByTeam } = this.props
-    // convert id back into a number
+    const { schedule, team, getSchedule, filterByTeam } = this.props
+    let selectedId = team.selected ? team.selected.id : null
     if (teamId === "all") {
-      fetchSchedule()
-    } else if (team.selected && teamId === team.selected.id) {
-      console.log('do nothing')
-    } else {
+      getSchedule()
+    } else if (parseInt(teamId) !== selectedId) {
       filterByTeam(parseInt(teamId), schedule.dateFilter)
     }
   }
 
   render() {
-    // const { dateFilter, handleCalendarChange, handleFilterByTeam } = this.props
-    const { filterByDate } = this.props
-    const { schedule } = this.props
+    const { schedule, filterByDate, removeFilterByDate } = this.props
     const { showCalendar } = this.state
     let dateFilter = schedule.dateFilter
     const teamOptions = this.getTeamOptions()
@@ -110,16 +98,19 @@ export default class extends Component {
         <NarrowContainer>
           <Grid>
             <Grid.Row as={UnpaddedRow}>
-              <Grid.Column as={UnpaddedColumn} width={13}>
+              <Grid.Column as={UnpaddedColumn} width={16}>
                 <Menu as={FilterBar}>
                   <Calendar
                     open={showCalendar}
                     trigger={
-                      <Menu.Item
-                        as={LinkItem}
-                        onClick={() => this.setState({ showCalendar: !showCalendar })}
-                      >
-                        <FilterLabel label={this.setFilterLabel(dateFilter)} />
+                      <Menu.Item as={LinkItem}>
+                        <FilterLabel
+                          dateFilter={dateFilter}
+                          handleOpen={() =>
+                            this.setState({ showCalendar: !showCalendar })
+                          }
+                          handleRemove={removeFilterByDate}
+                        />
                       </Menu.Item>
                     }
                     handleChange={date => {
@@ -139,13 +130,15 @@ export default class extends Component {
                       defaultValue={teamOptions[0].value}
                     />
                   </Menu.Item>
-                  <Menu.Item>
-                    <Button
-                      as={LinkButton}
-                      onClick={this.handleStandings}
-                      content="Standings"
-                    />
-                  </Menu.Item>
+                  <Menu.Menu position="right">
+                    <Menu.Item>
+                      <Button
+                        as={LinkButton}
+                        onClick={this.handleStandings}
+                        content="Standings"
+                      />
+                    </Menu.Item>
+                  </Menu.Menu>
                 </Menu>
               </Grid.Column>
             </Grid.Row>

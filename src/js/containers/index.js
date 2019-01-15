@@ -12,7 +12,9 @@ import {
   fetchRecapArticle,
   fetchPlayers,
   fetchSchedule,
+  getSchedule,
   filterByDate,
+  removeFilterByDate,
   getPreviousGames,
   getUpcomingGames,
   getLiveGame,
@@ -34,7 +36,9 @@ const mapDispatchToProps = dispatch => ({
   fetchPlayers: () => dispatch(fetchPlayers()),
   // schedule actions
   fetchSchedule: () => dispatch(fetchSchedule()),
+  getSchedule: () => dispatch(getSchedule()),
   filterByDate: (schedule, date) => dispatch(filterByDate(schedule, date)),
+  removeFilterByDate: () => dispatch(removeFilterByDate()),
   getPreviousGames: (schedule, filtered, dateFilterFrom) =>
     dispatch(getPreviousGames(schedule, filtered, dateFilterFrom)),
   getUpcomingGames: (schedule, filtered, dateFilterTo) =>
