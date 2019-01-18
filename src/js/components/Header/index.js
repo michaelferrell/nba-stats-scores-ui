@@ -138,13 +138,15 @@ export default class extends Component {
                     />
                   </Menu.Item>
                   <Menu.Menu position="right">
-                    <Menu.Item>
-                      <Button
-                        as={LinkButton}
-                        onClick={this.handleSeasonStats}
-                        content="Season Stats"
-                      />
-                    </Menu.Item>
+                    {
+                    // <Menu.Item>
+                    //   <Button
+                    //     as={LinkButton}
+                    //     onClick={this.handleSeasonStats}
+                    //     content="Season Stats"
+                    //   />
+                    // </Menu.Item>
+                    }
                     <Menu.Item>
                       <Button
                         as={LinkButton}
