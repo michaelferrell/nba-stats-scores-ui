@@ -12,6 +12,11 @@ export default (state = default_state, action) => {
         ...state,
         selected: null
       }
+    case "GET_SCHEDULE_SUCCESS":
+      return {
+        ...state,
+        selected: null
+      }
     case "FETCH_TEAM_STANDINGS_SUCCESS":
       return {
         ...state,
