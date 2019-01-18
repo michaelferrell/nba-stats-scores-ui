@@ -22,6 +22,7 @@ import {
   filterByTeam,
   closeAllModals,
   gameDetailModal,
+  seasonStatsModal,
   teamStandingsModal
 } from "./../actions/"
 
@@ -50,6 +51,7 @@ const mapDispatchToProps = dispatch => ({
   // modal actions
   closeAllModals: () => dispatch(closeAllModals()),
   gameDetailModal: payload => dispatch(gameDetailModal(payload)),
+  seasonStatsModal: payload => dispatch(seasonStatsModal(payload)),
   teamStandingsModal: payload => dispatch(teamStandingsModal(payload))
 })
 

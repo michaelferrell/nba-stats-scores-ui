@@ -14,4 +14,4 @@ export {
 
 export { fetchTeamStandings, filterByTeam } from "./Team"
 
-export { closeAllModals, gameDetailModal, teamStandingsModal } from "./Modal"
+export { closeAllModals, gameDetailModal, seasonStatsModal, teamStandingsModal } from "./Modal"

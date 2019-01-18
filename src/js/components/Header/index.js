@@ -71,6 +71,13 @@ export default class extends Component {
     return options
   }
 
+  handleSeasonStats = () => {
+    const { seasonStatsModal, modal } = this.props
+    if (!modal.season_stats) {
+      seasonStatsModal()
+    }
+  }
+
   handleStandings = () => {
     const { teamStandingsModal, modal } = this.props
     if (!modal.team_standings) {
@@ -131,6 +138,13 @@ export default class extends Component {
                     />
                   </Menu.Item>
                   <Menu.Menu position="right">
+                    <Menu.Item>
+                      <Button
+                        as={LinkButton}
+                        onClick={this.handleSeasonStats}
+                        content="Season Stats"
+                      />
+                    </Menu.Item>
                     <Menu.Item>
                       <Button
                         as={LinkButton}
