@@ -5,6 +5,11 @@ export const gameDetailModal = payload => ({
   payload
 })
 
+export const seasonStatsModal = payload => ({
+  type: "SEASON_STATS_MODAL",
+  payload
+})
+
 export const teamStandingsModal = payload => ({
   type: "TEAM_STANDINGS_MODAL",
   payload

@@ -193,10 +193,15 @@ const filterDate = payload => ({
   payload
 })
 
+const removeDate = () => ({
+  type: "REMOVE_FILTER_BY_DATE"
+})
+
 export const removeFilterByDate = () => (dispatch, getState) => {
   let team = getState().team
   if (team.selected) {
     dispatch(filterByTeam(team.selected.id))
+    dispatch(removeDate())
   } else {
     dispatch(getSchedule())
   }

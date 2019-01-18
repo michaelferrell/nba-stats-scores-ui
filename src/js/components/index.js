@@ -6,6 +6,7 @@ import { NarrowContainer } from "./Layout/"
 import Header from "./Header/"
 import GameList from "./Game/List"
 import GameDetailModal from "./Modal/GameDetailModal"
+import SeasonStatsModal from "./Modal/SeasonStatsModal"
 import TeamStandingsModal from "./Modal/TeamStandingsModal"
 import LoadingSpinner from "./Spinner/LoadingSpinner"
 
@@ -156,6 +157,9 @@ export default class extends Component {
             fetchRecapArticle={fetchRecapArticle}
             handleClose={closeAllModals}
           />
+        )}
+        {modal.season_stats && (
+          <SeasonStatsModal handleClose={closeAllModals} />
         )}
         {modal.team_standings && (
           <TeamStandingsModal

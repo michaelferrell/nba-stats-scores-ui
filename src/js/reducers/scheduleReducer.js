@@ -80,6 +80,11 @@ export default (state = default_state, action) => {
         filtered: { ...payload.filtered },
         dateFilter: payload.dateFilter
       }
+    case "REMOVE_FILTER_BY_DATE":
+      return {
+        ...state,
+        dateFilter: null
+      }
     default:
       return state
   }
