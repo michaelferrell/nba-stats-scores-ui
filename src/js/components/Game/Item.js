@@ -97,7 +97,7 @@ export default ({ game, oddNumber, handleClick }) => (
           {game.status === "final" ? (
             <span>Final - </span>
           ) : game.status === "upcoming" ? (
-            <span>{game.date.time} - </span>
+            <span>{game.time} - </span>
           ) : null}
           <SecondaryText>{displayGameDate(game.date)}</SecondaryText>
         </CardTitle>

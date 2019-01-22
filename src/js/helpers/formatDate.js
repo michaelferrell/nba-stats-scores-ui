@@ -1,4 +1,3 @@
-import { formatTime } from "./formatTime"
 import { DAY_NAMES, MONTH_NAMES } from "./../constants/"
 
 export const formatDate = date_str => {
@@ -6,7 +5,6 @@ export const formatDate = date_str => {
   const shortened = date.getMonth() + 1 + "/" + date.getDate()
   const day = DAY_NAMES[date.getDay()]
   const month = date.getMonth()
-  const time = formatTime(date_str)
   return {
     date: date.getDate(),
     month: MONTH_NAMES[month],
@@ -14,9 +12,8 @@ export const formatDate = date_str => {
     month_index: month,
     month_number: month + 1,
     year: date.getFullYear(),
+    day: day,
     day_abbr: day.substring(0, 3),
-    shortened: shortened,
-    day,
-    time
+    shortened: shortened
   }
 }

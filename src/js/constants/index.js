@@ -236,20 +236,6 @@ export const TEAM_STANDINGS_URL =
   "http://heroflicks.com/api/projects/nba-app/teamstandings.php"
 export const PLAYERS_URL =
   "http://heroflicks.com/api/projects/nba-app/players.php"
-export const TIME_CONVERSION = {
-  13: 1,
-  14: 2,
-  15: 3,
-  16: 4,
-  17: 5,
-  18: 6,
-  19: 7,
-  20: 8,
-  21: 9,
-  22: 10,
-  23: 11,
-  24: 12
-}
 export const DAYS_AHEAD = 1
 export const NBA_LOCAL_STORAGE = "NBA_LOCAL_STORAGE"
 export const LOCAL_STORAGE_ALL_PLAYERS = "LOCAL_STORAGE_ALL_PLAYERS"
