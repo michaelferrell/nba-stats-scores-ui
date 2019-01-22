@@ -13,6 +13,11 @@ class TeamScheduleModel {
     visitor.teamId = parseInt(visitor.teamId)
     this.game_id = game.gameId
     this.date = formatDate(game.startTimeUTC)
+    // time is already in utc, just call toLocaleTimeString()
+    this.time = new Date(game.startTimeUTC).toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit"
+    })
     this.activeGame = activeGame || {}
     this.status = this.setStatus(game)
     this.home_team = {}

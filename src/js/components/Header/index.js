@@ -49,6 +49,12 @@ const LinkButton = styled(Button)`
   }
 `
 
+const NoBorder = styled.div`
+  &.item:before {
+    background-color: transparent !important;
+  }
+`
+
 const MarginLeft = styled.div`
   &.item {
     margin-left: 1.5em;
@@ -147,7 +153,7 @@ export default class extends Component {
                     //   />
                     // </Menu.Item>
                     }
-                    <Menu.Item>
+                    <Menu.Item as={NoBorder}>
                       <Button
                         as={LinkButton}
                         onClick={this.handleStandings}

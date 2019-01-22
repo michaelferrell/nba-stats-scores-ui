@@ -1,5 +1,6 @@
-import { MONTH_NAMES, DAY_NAMES, TIME_CONVERSION } from "./../constants/"
+import { MONTH_NAMES, DAY_NAMES } from "./../constants/"
 import { formatDate } from "./../helpers/formatDate"
+import { formatTime } from "./../helpers/formatTime"
 import { formatTVNetworks } from "./../helpers/formatTVNetworks"
 import { formatClock } from "./../helpers/formatClock"
 import { formatPeriod } from "./../helpers/formatPeriod"
@@ -14,6 +15,7 @@ class NBAGameModel {
     this.status = this.setStatus(game)
     this.tv = formatTVNetworks(game.bd.b)
     this.date = formatDate(game.etm)
+    this.time = formatTime(game.etm)
     // make sure all team ids are of type number
     this.home_team = {
       id: parseInt(home.tid),
