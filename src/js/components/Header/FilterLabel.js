@@ -29,6 +29,6 @@ export default ({ dateFilter, handleOpen, handleRemove }) =>
   ) : (
     <PrimaryLabel onClick={handleOpen}>
       <Icon as={LabelIcon} name="calendar alternate outline" />
-      Choose Date
+      Select Date
     </PrimaryLabel>
   )

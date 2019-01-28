@@ -79,10 +79,11 @@
   },
   "peerDependencies": {},
   "scripts": {
-    "build": "webpack --config webpack/webpack.config-production.js -p --display-error-details --progress --optimize-minimize",
+    "build": "webpack --config webpack/webpack.config-production.js -p --display-error-details --progress --optimize-minimize && npm run ftp",
     "dev": "webpack-dev-server --config ./webpack/webpack.config-dev.js --mode development",
     "dev:local": "cross-env NODE_ENV=local npm run dev",
-    "reinstall": "rm -rf node_modules package-lock.json && npm install --save-dev"
+    "reinstall": "rm -rf node_modules package-lock.json && npm install --save-dev",
+    "ftp": "./scripts/ftp.sh"
   },
   "repository": {},
   "keywords": [],
