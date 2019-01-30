@@ -236,9 +236,12 @@ export const TEAM_STANDINGS_URL =
   "http://heroflicks.com/api/projects/nba-app/teamstandings.php"
 export const PLAYERS_URL =
   "http://heroflicks.com/api/projects/nba-app/players.php"
+export const PLAYER_PROFILE_URL =
+  "http://heroflicks.com/api/projects/nba-app/playerprofile.php"
 export const DAYS_AHEAD = 1
 export const NBA_LOCAL_STORAGE = "NBA_LOCAL_STORAGE"
 export const LOCAL_STORAGE_ALL_PLAYERS = "LOCAL_STORAGE_ALL_PLAYERS"
+export const LOCAL_STORAGE_TRACKED_PLAYERS = "LOCAL_STORAGE_TRACKED_PLAYERS"
 export const COLOR = {
   mineshaft: "#333333",
   dustygray: "#999999",

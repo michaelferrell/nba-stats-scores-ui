@@ -1,7 +1,9 @@
 const default_state = {
   game_detail: false,
   season_stats: false,
+  player_tracker: false,
   team_standings: false,
+  player_stats: false,
 }
 
 export default (state = default_state, action) => {
@@ -19,10 +21,20 @@ export default (state = default_state, action) => {
         ...state,
         season_stats: true
       }
+    case "PLAYER_TRACKER_MODAL":
+      return {
+        ...state,
+        player_tracker: true
+      }
     case "TEAM_STANDINGS_MODAL":
       return {
         ...state,
         team_standings: true
+      }
+    case "PLAYER_STATS_MODAL":
+      return {
+        ...state,
+        player_stats: payload
       }
     default:
       return state

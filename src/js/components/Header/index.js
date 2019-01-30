@@ -84,6 +84,13 @@ export default class extends Component {
     }
   }
 
+  handlePlayerTracker = () => {
+    const { playerTrackerModal, modal } = this.props
+    if (!modal.player_tracker) {
+      playerTrackerModal()
+    }
+  }
+
   handleStandings = () => {
     const { teamStandingsModal, modal } = this.props
     if (!modal.team_standings) {
@@ -154,6 +161,13 @@ export default class extends Component {
                     // </Menu.Item>
                     }
                     <Menu.Item as={NoBorder}>
+                      <Button
+                        as={LinkButton}
+                        onClick={this.handlePlayerTracker}
+                        content="Player Tracker"
+                      />
+                    </Menu.Item>
+                    <Menu.Item>
                       <Button
                         as={LinkButton}
                         onClick={this.handleStandings}

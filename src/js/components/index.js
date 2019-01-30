@@ -5,9 +5,13 @@ import { Button, Grid, Dimmer } from "semantic-ui-react"
 import { NarrowContainer } from "./Layout/"
 import Header from "./Header/"
 import GameList from "./Game/List"
+import PlayerStatsList from "./Game/PlayerStatsList"
+import PlayerDrawer from "./Player/Drawer"
 import GameDetailModal from "./Modal/GameDetailModal"
+import PlayerStatsModal from "./Modal/PlayerStatsModal"
 import SeasonStatsModal from "./Modal/SeasonStatsModal"
 import TeamStandingsModal from "./Modal/TeamStandingsModal"
+import PlayerTrackerModal from "./Modal/PlayerTrackerModal"
 import LoadingSpinner from "./Spinner/LoadingSpinner"
 
 import { handlePageScroll } from "./../helpers/handlePageScroll"
@@ -98,7 +102,12 @@ export default class extends Component {
       closeAllModals,
       fetchTeamStandings,
       fetchBoxscore,
-      fetchRecapArticle
+      fetchRecapArticle,
+      fetchTrackedPlayers,
+      fetchPlayerProfile,
+      trackPlayer,
+      removeTrackedPlayer,
+      fetchPlayerSchedule
     } = this.props
     const game = this.props.game
     const player = this.props.player
@@ -110,11 +119,19 @@ export default class extends Component {
     return (
       <AppBackground>
         <Header {...this.props} />
+        {!fetching && player.selected && player.profile && (
+          <PlayerDrawer
+            id={player.selected}
+            bio={player.profile.bio}
+            stats={player.profile.stats}
+          />
+        )}
         <NarrowContainer style={{ marginTop: "3.5em" }}>
           {Object.keys(filtered).length === 0 &&
             !fetching && <div>No games on this date.</div>}
           {Object.keys(filtered).length > 0 &&
-            !fetching && (
+            !fetching &&
+            !player.selected && (
               <React.Fragment>
                 {!team.selected &&
                   !dateFilter && (
@@ -145,6 +162,11 @@ export default class extends Component {
                 </MarginTop>
               </React.Fragment>
             )}
+          {!fetching &&
+            player.selected &&
+            player.schedule && (
+              <PlayerStatsList {...this.props} />
+            )}
           {fetching && <LoadingSpinner />}
         </NarrowContainer>
         {modal.game_detail && (
@@ -152,6 +174,17 @@ export default class extends Component {
             game={modal.game_detail}
             boxscore={game.boxscore}
             players={player.list}
+            article={game.article}
+            fetchBoxscore={fetchBoxscore}
+            fetchRecapArticle={fetchRecapArticle}
+            handleClose={closeAllModals}
+          />
+        )}
+        {modal.player_stats && (
+          <PlayerStatsModal
+            game={modal.player_stats}
+            boxscore={game.boxscore}
+            player={player}
             article={game.article}
             fetchBoxscore={fetchBoxscore}
             fetchRecapArticle={fetchRecapArticle}
@@ -166,6 +199,17 @@ export default class extends Component {
             standings={team.standings}
             fetchTeamStandings={fetchTeamStandings}
             handleClose={closeAllModals}
+          />
+        )}
+        {modal.player_tracker && (
+          <PlayerTrackerModal
+            player={player}
+            handleClose={closeAllModals}
+            fetchTrackedPlayers={fetchTrackedPlayers}
+            fetchPlayerProfile={fetchPlayerProfile}
+            trackPlayer={trackPlayer}
+            removeTrackedPlayer={removeTrackedPlayer}
+            fetchPlayerSchedule={fetchPlayerSchedule}
           />
         )}
       </AppBackground>
