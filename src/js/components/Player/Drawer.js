@@ -6,13 +6,13 @@ import { getPlayerHeadshotUrl } from "./../../helpers/getPlayerHeadshotUrl"
 import { TEAMS } from "./../../constants/"
 
 const FixedContainer = styled.div`
-  position: fixed;
-  left: 0;
-  top: 52px;
-  width: 375px;
-  height: 100%;
-  border-right: 1px solid #2c2c2c;
-  top: 47px;
+  // position: fixed;
+  // left: 0;
+  // top: 52px;
+  // width: 425px;
+  // height: 100%;
+  // border-right: 1px solid #2c2c2c;
+  // top: 47px;
   padding: 1.5em 2em;
 `
 
@@ -23,27 +23,64 @@ const Section = styled.div`
 `
 
 const PlayerName = styled.div`
-  font-size: 1.3em;
+  font-size: 2em;
+  color: #fff;
   margin-bottom: .6em;
-  color: #c0c0c0;
 `
 
 const PlayerInfo = styled.div`
   font-size: 1.1em;
   margin-bottom: .2em;
+  color: #fff;
+  span {
+    color: #999;
+  }
+`
+
+const PlayerMainInfo = styled.div`
+  font-size: 1.3em;
+  margin-bottom: .4em;
+  color: #fff;
 `
 
 const HeadshotCircle = styled.div`
   background-image: url(${props => props.src});
-  background-position: center center;
+  background-position: center bottom;
   background-repeat: no-repeat;
   background-size: 14em;
-  border-radius: 50%;
-  border: 2px solid #222;
+  border-radius: 3px;
+  background-color: #333;
   overflow: hidden;
   width: 11em;
   height: 11em;
   margin-bottom: 1.2em;
+
+`
+
+const StatContainer = styled.div`
+  border: 1px solid #626262;
+  margin-top: 1em;
+  width: 410px;
+`
+
+const LargeStatBox = styled.div`
+  display: inline-block;
+  width: 33.3%;
+  text-align: center;
+  padding: 1.8em 0;
+  color: #fff;
+`
+const StatName = styled.div`
+  font-size: 1.1em;
+  font-weight: 600;
+  line-height: 1;
+  margin-top: 0.4em;
+  color: #ddd;
+`
+const StatValue = styled.div`
+  font-size: 2.4em;
+  font-weight: 500;
+  line-height: 1;
 `
 
 const PlayerHeadshot = (playerId, teamId) => (
@@ -76,24 +113,47 @@ export default class extends Component {
     const { id, bio, stats } = this.props
     const { season_total, year } = this.state
     let team = TEAMS[parseInt(bio.team_id)]
+    let draftTeam = TEAMS[parseInt(bio.draft.teamId)].tricode
+
+    let dog = 'okay'
     return (
       <FixedContainer>
-        <PlayerHeadshot playerId={id} teamId={bio.team_id} />
-        <PlayerName>{bio.name}</PlayerName>
-        <PlayerInfo>{bio.pos} | {team.city} {team.name}</PlayerInfo>
-        <PlayerInfo>Height {bio.height}, weight {bio.weight} lbs</PlayerInfo>
-        <PlayerInfo>Born {bio.birthdate}</PlayerInfo>
-        <PlayerInfo>Prior: {bio.collegeName}</PlayerInfo>
-        {bio.draft && (
-          <PlayerInfo>Draft: {bio.draft.seasonYear} Rnd {bio.draft.roundNum} Pick {bio.draft.pickNum}</PlayerInfo>
-        )}
+        <Grid>
+          <Grid.Row>
+            <Grid.Column width={4}>
+              <PlayerHeadshot playerId={id} teamId={bio.team_id} />
+            </Grid.Column>
+            <Grid.Column width={12}>
+              <PlayerName>{bio.name}</PlayerName>
+              <PlayerMainInfo>#{bio.jersey} {bio.pos} | {bio.height}, {bio.weight} lbs | {team.city} {team.name}</PlayerMainInfo>
+              <PlayerInfo><span>Born:</span> {bio.birthdate}</PlayerInfo>
+              <PlayerInfo><span>Prior:</span> {bio.collegeName}</PlayerInfo>
+              <PlayerInfo><span>Drafted:</span> {bio.draft.seasonYear}: Round {bio.draft.roundNum}, Pick {bio.draft.pickNum} by {draftTeam}</PlayerInfo>
+              {parseInt(bio.yearsPro) > 0 && (
+                <PlayerInfo>
+                  <span>Years Pro:</span> {bio.yearsPro}
+                </PlayerInfo>
+              )}
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
         {season_total && (
-          <Section>
-            <PlayerName>{this.formatYear(year)} Season Stats</PlayerName>
-            <PlayerInfo>PPG: {season_total.ppg}</PlayerInfo>
-            <PlayerInfo>RPG: {season_total.rpg}</PlayerInfo>
-            <PlayerInfo>APG: {season_total.apg}</PlayerInfo>
-          </Section>
+          <React.Fragment>
+            <StatContainer>
+            <LargeStatBox first>
+              <StatValue>{season_total.ppg}</StatValue>
+              <StatName>PPG</StatName>
+            </LargeStatBox>
+            <LargeStatBox>
+              <StatValue>{season_total.rpg}</StatValue>
+              <StatName>RPG</StatName>
+            </LargeStatBox>
+            <LargeStatBox>
+              <StatValue>{season_total.apg}</StatValue>
+              <StatName>APG</StatName>
+            </LargeStatBox>
+            </StatContainer>
+          </React.Fragment>
         )}
       </FixedContainer>
     )

@@ -1,6 +1,6 @@
 const path = require("path")
 const webpack = require("webpack")
-const wds_port = 2000
+const wds_port = 3000
 
 const PATHS = {
   src: path.join(__dirname, "..", "src"),

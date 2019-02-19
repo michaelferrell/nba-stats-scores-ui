@@ -6,6 +6,7 @@ import { formatActiveGames } from "./../helpers/formatActiveGames"
 import { scheduleByMonth } from "./../helpers/scheduleByMonth"
 import { scheduleByDate } from "./../helpers/scheduleByDate"
 import { getYesterdaysDate } from "./../helpers/getYesterdaysDate"
+import { getTodaysDate } from "./../helpers/getTodaysDate"
 import { getTomorrowsDate } from "./../helpers/getTomorrowsDate"
 import { getDatesInRange } from "./../helpers/getDatesInRange"
 import { formatDate } from "./../helpers/formatDate"
@@ -45,11 +46,11 @@ const filterScheduleSuccess = payload => ({
 //   schedule = scheduleByMonth(schedule, activeGames)
 
 //   let filtered = {}
-//   const today = new Date()
+//   const today = getTodaysDate()
 //   const tomorrow = getTomorrowsDate(today)
 
 //   schedule[MONTH_NAMES[today.getMonth()]].map(g => {
-//     if (getDatesInRange(DAYS_AHEAD).indexOf(g.game_code) > -1) {
+//     if (getDatesInRange(DAYS_AHEAD, today).indexOf(g.game_code) > -1) {
 //       if (filtered[g.game_code] === undefined) {
 //         filtered[g.game_code] = { games: [], date: g.date }
 //       }
@@ -94,11 +95,11 @@ export const fetchSchedule = () => dispatch => {
       }
 
       let filtered = {}
-      const today = new Date()
+      const today = getTodaysDate()
       const tomorrow = getTomorrowsDate(today)
 
       schedule[MONTH_NAMES[today.getMonth()]].map(g => {
-        if (getDatesInRange(DAYS_AHEAD).indexOf(g.game_code) > -1) {
+        if (getDatesInRange(DAYS_AHEAD, today).indexOf(g.game_code) > -1) {
           if (filtered[g.game_code] === undefined) {
             filtered[g.game_code] = { games: [], date: g.date }
           }
@@ -132,11 +133,11 @@ export const getSchedule = () => (dispatch, getState) => {
   }
   let filtered = {}
   let dateFilter = null
-  const today = new Date()
+  const today = getTodaysDate()
   const tomorrow = getTomorrowsDate(today)
 
   schedule[MONTH_NAMES[today.getMonth()]].map(g => {
-    if (getDatesInRange(DAYS_AHEAD).indexOf(g.game_code) > -1) {
+    if (getDatesInRange(DAYS_AHEAD, today).indexOf(g.game_code) > -1) {
       if (filtered[g.game_code] === undefined) {
         filtered[g.game_code] = { games: [], date: g.date }
       }
