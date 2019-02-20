@@ -10,11 +10,6 @@ export const seasonStatsModal = payload => ({
   payload
 })
 
-export const playerTrackerModal = payload => ({
-  type: "PLAYER_TRACKER_MODAL",
-  payload
-})
-
 export const teamStandingsModal = payload => ({
   type: "TEAM_STANDINGS_MODAL",
   payload

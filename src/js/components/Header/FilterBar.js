@@ -11,7 +11,7 @@ import { COLOR, TEAMS } from "./../../constants/"
 const FixedFilterHeader = styled.div`
   position: fixed;
   left: 0;
-  top: 48px;
+  top: 40px;
   width: 100%;
   z-index: 999;
   background-color: #232121;

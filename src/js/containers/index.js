@@ -28,7 +28,6 @@ import {
   closeAllModals,
   gameDetailModal,
   seasonStatsModal,
-  playerTrackerModal,
   playerStatsModal,
   teamStandingsModal
 } from "./../actions/"
@@ -64,7 +63,6 @@ const mapDispatchToProps = dispatch => ({
   closeAllModals: () => dispatch(closeAllModals()),
   gameDetailModal: payload => dispatch(gameDetailModal(payload)),
   seasonStatsModal: payload => dispatch(seasonStatsModal(payload)),
-  playerTrackerModal: payload => dispatch(playerTrackerModal(payload)),
   playerStatsModal: payload => dispatch(playerStatsModal(payload)),
   teamStandingsModal: payload => dispatch(teamStandingsModal(payload))
 })
@@ -86,4 +84,7 @@ const index = props => (
   </Provider>
 )
 
-export default connect(mapStateToProps, mapDispatchToProps)(index)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(index)

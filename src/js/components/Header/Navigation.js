@@ -3,14 +3,19 @@ import { Link } from "react-router-dom"
 import styled from "styled-components"
 import { Grid, Menu } from "semantic-ui-react"
 
-import {
-  FixedHeader,
-  NarrowContainer,
-  UnpaddedRow,
-  UnpaddedColumn
-} from "./../Layout/"
+import { NarrowContainer, UnpaddedRow, UnpaddedColumn } from "./../Layout/"
 
 import { COLOR } from "./../../constants/"
+
+const FixedHeader = styled.div`
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 40px;
+  width: 100%;
+  z-index: 999;
+  background-color: #2c2c2c;
+`
 
 const StyledMenu = styled.div`
   &.ui.menu {
@@ -19,7 +24,7 @@ const StyledMenu = styled.div`
   }
   &.ui.menu .item {
     color: #777;
-    margin-right: .75em;
+    margin-right: 0.75em;
     &:hover {
       color: ${COLOR.silver};
     }
@@ -52,9 +57,9 @@ export default class extends Component {
               <Grid.Column as={UnpaddedColumn} width={16}>
                 <Menu as={StyledMenu}>
                   {
-                  // <Menu.Item onClick={this.handleSeasonStats}>
-                  //   Season Stats
-                  // </Menu.Item>
+                    // <Menu.Item onClick={this.handleSeasonStats}>
+                    //   Season Stats
+                    // </Menu.Item>
                   }
                   <Menu.Item as={Link} to="/">
                     Home

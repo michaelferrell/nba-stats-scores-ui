@@ -26,6 +26,5 @@ export {
   gameDetailModal,
   seasonStatsModal,
   teamStandingsModal,
-  playerTrackerModal,
   playerStatsModal
 } from "./Modal"
