@@ -29,11 +29,3 @@ export const UnpaddedColumn = styled.div`
   padding-right: 0 !important;
 `
 
-export const FixedHeader = styled.div`
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  z-index: 999;
-  background-color: #2c2c2c;
-`

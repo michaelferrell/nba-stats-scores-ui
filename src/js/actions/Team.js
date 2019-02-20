@@ -35,6 +35,12 @@ const fetchTeamScheduleError = payload => ({
   payload
 })
 
+export const fetchTeamSchedule = teamId => {
+  return fetch(TEAM_SCHEDULE_URL + "?teamid=" + teamId)
+    .then(response => response.json())
+    .catch(err => false)
+}
+
 const filterByTeamRequest = () => ({
   type: "FILTER_BY_TEAM_REQUEST"
 })

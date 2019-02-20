@@ -42,6 +42,218 @@ export const DAY_NAMES = [
   "Saturday"
 ]
 export const TEAMS = {
+  1610612737: {
+    "id": 1610612737,
+    "name": "Hawks",
+    "city": "Atlanta",
+    "logo": "",
+    "tricode": "ATL"
+  },
+  1610612738: {
+    "id": 1610612738,
+    "name": "Celtics",
+    "city": "Boston",
+    "logo": "",
+    "tricode": "BOS"
+  },
+  1610612739: {
+    "id": 1610612739,
+    "name": "Cavaliers",
+    "city": "Cleveland",
+    "logo": "",
+    "tricode": "CLE"
+  },
+  1610612740: {
+    "id": 1610612740,
+    "name": "Pelicans",
+    "city": "New Orleans",
+    "logo": "",
+    "tricode": "NOP"
+  },
+  1610612741: {
+    "id": 1610612741,
+    "name": "Bulls",
+    "city": "Chicago",
+    "logo": "",
+    "tricode": "CHI"
+  },
+  1610612742: {
+    "id": 1610612742,
+    "name": "Mavericks",
+    "city": "Dallas",
+    "logo": "",
+    "tricode": "DAL"
+  },
+  1610612743: {
+    "id": 1610612743,
+    "name": "Nuggets",
+    "city": "Denver",
+    "logo": "",
+    "tricode": "DEN"
+  },
+  1610612744: {
+    "id": 1610612744,
+    "name": "Warriors",
+    "city": "Golden State",
+    "logo": "",
+    "tricode": "GSW"
+  },
+  1610612745: {
+    "id": 1610612745,
+    "name": "Rockets",
+    "city": "Houston",
+    "logo": "",
+    "tricode": "HOU"
+  },
+  1610612746: {
+    "id": 1610612746,
+    "name": "Clippers",
+    "city": "LA",
+    "logo": "",
+    "tricode": "LAC"
+  },
+  1610612747: {
+    "id": 1610612747,
+    "name": "Lakers",
+    "city": "Los Angeles",
+    "logo": "",
+    "tricode": "LAL"
+  },
+  1610612748: {
+    "id": 1610612748,
+    "name": "Heat",
+    "city": "Miami",
+    "logo": "",
+    "tricode": "MIA"
+  },
+  1610612749: {
+    "id": 1610612749,
+    "name": "Bucks",
+    "city": "Milwaukee",
+    "logo": "",
+    "tricode": "MIL"
+  },
+  1610612750: {
+    "id": 1610612750,
+    "name": "Timberwolves",
+    "city": "Minnesota",
+    "logo": "",
+    "tricode": "MIN"
+  },
+  1610612751: {
+    "id": 1610612751,
+    "name": "Nets",
+    "city": "Brooklyn",
+    "logo": "",
+    "tricode": "BKN"
+  },
+  1610612752: {
+    "id": 1610612752,
+    "name": "Knicks",
+    "city": "New York",
+    "logo": "",
+    "tricode": "NYK"
+  },
+  1610612753: {
+    "id": 1610612753,
+    "name": "Magic",
+    "city": "Orlando",
+    "logo": "",
+    "tricode": "ORL"
+  },
+  1610612754: {
+    "id": 1610612754,
+    "name": "Pacers",
+    "city": "Indiana",
+    "logo": "",
+    "tricode": "IND"
+  },
+  1610612755: {
+    "id": 1610612755,
+    "name": "76ers",
+    "city": "Philadelphia",
+    "logo": "",
+    "tricode": "PHI"
+  },
+  1610612756: {
+    "id": 1610612756,
+    "name": "Suns",
+    "city": "Phoenix",
+    "logo": "",
+    "tricode": "PHX"
+  },
+  1610612757: {
+    "id": 1610612757,
+    "name": "Trail Blazers",
+    "city": "Portland",
+    "logo": "",
+    "tricode": "POR"
+  },
+  1610612758: {
+    "id": 1610612758,
+    "name": "Kings",
+    "city": "Sacramento",
+    "logo": "",
+    "tricode": "SAC"
+  },
+  1610612759: {
+    "id": 1610612759,
+    "name": "Spurs",
+    "city": "San Antonio",
+    "logo": "",
+    "tricode": "SAS"
+  },
+  1610612760: {
+    "id": 1610612760,
+    "name": "Thunder",
+    "city": "Oklahoma City",
+    "logo": "",
+    "tricode": "OKC"
+  },
+  1610612761: {
+    "id": 1610612761,
+    "name": "Raptors",
+    "city": "Toronto",
+    "logo": "",
+    "tricode": "TOR"
+  },
+  1610612762: {
+    "id": 1610612762,
+    "name": "Jazz",
+    "city": "Utah",
+    "logo": "",
+    "tricode": "UTA"
+  },
+  1610612763: {
+    "id": 1610612763,
+    "name": "Grizzlies",
+    "city": "Memphis",
+    "logo": "",
+    "tricode": "MEM"
+  },
+  1610612764: {
+    "id": 1610612764,
+    "name": "Wizards",
+    "city": "Washington",
+    "logo": "",
+    "tricode": "WAS"
+  },
+  1610612765: {
+    "id": 1610612765,
+    "name": "Pistons",
+    "city": "Detroit",
+    "logo": "",
+    "tricode": "DET"
+  },
+  1610612766: {
+    "id": 1610612766,
+    "name": "Hornets",
+    "city": "Charlotte",
+    "logo": "",
+    "tricode": "CHA"
+  }
+}
+export const TEAMS_OLD = {
   1610612753: {
     id: 1610612753,
     name: "Magic",
@@ -236,9 +448,12 @@ export const TEAM_STANDINGS_URL =
   "http://heroflicks.com/api/projects/nba-app/teamstandings.php"
 export const PLAYERS_URL =
   "http://heroflicks.com/api/projects/nba-app/players.php"
+export const PLAYER_PROFILE_URL =
+  "http://heroflicks.com/api/projects/nba-app/playerprofile.php"
 export const DAYS_AHEAD = 1
 export const NBA_LOCAL_STORAGE = "NBA_LOCAL_STORAGE"
 export const LOCAL_STORAGE_ALL_PLAYERS = "LOCAL_STORAGE_ALL_PLAYERS"
+export const LOCAL_STORAGE_TRACKED_PLAYERS = "LOCAL_STORAGE_TRACKED_PLAYERS"
 export const COLOR = {
   mineshaft: "#333333",
   dustygray: "#999999",

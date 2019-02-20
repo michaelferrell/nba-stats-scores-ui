@@ -11,6 +11,11 @@ import {
   fetchBoxscore,
   fetchRecapArticle,
   fetchPlayers,
+  fetchPlayerProfile,
+  fetchTrackedPlayers,
+  trackPlayer,
+  removeTrackedPlayer,
+  fetchPlayerSchedule,
   fetchSchedule,
   getSchedule,
   filterByDate,
@@ -23,6 +28,7 @@ import {
   closeAllModals,
   gameDetailModal,
   seasonStatsModal,
+  playerStatsModal,
   teamStandingsModal
 } from "./../actions/"
 
@@ -35,6 +41,11 @@ const mapDispatchToProps = dispatch => ({
   fetchRecapArticle: game => dispatch(fetchRecapArticle(game)),
   // player actions
   fetchPlayers: () => dispatch(fetchPlayers()),
+  fetchPlayerProfile: id => dispatch(fetchPlayerProfile(id)),
+  fetchTrackedPlayers: () => dispatch(fetchTrackedPlayers()),
+  trackPlayer: id => dispatch(trackPlayer(id)),
+  removeTrackedPlayer: id => dispatch(removeTrackedPlayer(id)),
+  fetchPlayerSchedule: id => dispatch(fetchPlayerSchedule(id)),
   // schedule actions
   fetchSchedule: () => dispatch(fetchSchedule()),
   getSchedule: () => dispatch(getSchedule()),
@@ -52,6 +63,7 @@ const mapDispatchToProps = dispatch => ({
   closeAllModals: () => dispatch(closeAllModals()),
   gameDetailModal: payload => dispatch(gameDetailModal(payload)),
   seasonStatsModal: payload => dispatch(seasonStatsModal(payload)),
+  playerStatsModal: payload => dispatch(playerStatsModal(payload)),
   teamStandingsModal: payload => dispatch(teamStandingsModal(payload))
 })
 
@@ -72,4 +84,7 @@ const index = props => (
   </Provider>
 )
 
-export default connect(mapStateToProps, mapDispatchToProps)(index)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(index)

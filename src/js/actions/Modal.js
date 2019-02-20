@@ -14,3 +14,8 @@ export const teamStandingsModal = payload => ({
   type: "TEAM_STANDINGS_MODAL",
   payload
 })
+
+export const playerStatsModal = payload => ({
+  type: "PLAYER_STATS_MODAL",
+  payload
+})

@@ -1,10 +1,11 @@
 import { getYesterdaysDate } from "./getYesterdaysDate"
+import { getTodaysDate } from "./getTodaysDate"
 import { getTomorrowsDate } from "./getTomorrowsDate"
 import { formatGameCode } from "./formatGameCode"
 import { formatDate } from "./formatDate"
 
 export const displayGameDate = gameDate => {
-  const date = new Date()
+  const date = getTodaysDate()
   const gameCode = formatGameCode(gameDate)
   if (gameCode === formatGameCode(formatDate(date))) {
     return "Today"
