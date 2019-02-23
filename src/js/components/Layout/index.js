@@ -4,6 +4,7 @@ export const NarrowContainer = styled.div`
   max-width: 800px;
   padding: 1em 2em;
   margin: 0 auto;
+  margin-top: ${props => props.marginTop || 0};
 `
 
 export const MainGrid = styled.div`

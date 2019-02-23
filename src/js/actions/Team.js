@@ -12,6 +12,12 @@ const fetchTeamStandingsSuccess = payload => ({
   payload
 })
 
+const fetchTeamStandingsError = payload => ({
+  type: "FETCH_TEAM_STANDINGS_ERROR",
+  payload
+})
+
+
 export const fetchTeamStandings = () => dispatch => {
   fetch(TEAM_STANDINGS_URL)
     .then(response => response.json())
@@ -19,8 +25,9 @@ export const fetchTeamStandings = () => dispatch => {
     .then(data => {
       if (data) {
         const teamStandings = data.league.standard.conference
-        console.log("teamStandings", teamStandings)
         dispatch(fetchTeamStandingsSuccess(teamStandings))
+      } else {
+        dispatch(fetchTeamStandingsError(data))
       }
     })
 }

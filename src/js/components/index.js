@@ -6,6 +6,7 @@ import Header from "./Header/"
 import FilterBar from "./Header/FilterBar"
 import HomePage from "./Pages/Home"
 import PlayerTrackerPage from "./Pages/PlayerTracker"
+import TeamStandingsPage from "./Pages/TeamStandings"
 
 import { COLOR } from "./../constants/"
 
@@ -30,7 +31,7 @@ export default class extends Component {
         <Header {...this.props} />
         <Route
           exact={true}
-          path="/"
+          path="/nba"
           render={() => (
             <React.Fragment>
               <FilterBar {...this.props} />
@@ -41,6 +42,10 @@ export default class extends Component {
         <Route
           path="/tracker"
           render={() => <PlayerTrackerPage {...this.props} />}
+        />
+        <Route
+          path="/standings"
+          render={() => <TeamStandingsPage {...this.props} />}
         />
       </AppBackground>
     )

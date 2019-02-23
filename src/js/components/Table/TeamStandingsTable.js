@@ -11,6 +11,9 @@ const StyledTable = styled.table`
     margin-bottom: 2em;
     background-color: inherit;
   }
+  &.ui.inverted.table th {
+    background-color: inherit;
+  }
 `
 
 const RowHover = styled.tr`

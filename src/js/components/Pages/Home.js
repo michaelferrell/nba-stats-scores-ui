@@ -100,7 +100,7 @@ export default class extends Component {
     let filtered = this.props.schedule.filtered
     return (
       <React.Fragment>
-        <NarrowContainer style={{ marginTop: "5.5em" }}>
+        <NarrowContainer marginTop={"5.5em"}>
           {Object.keys(filtered).length === 0 && !fetching && (
             <div>No games on this date.</div>
           )}

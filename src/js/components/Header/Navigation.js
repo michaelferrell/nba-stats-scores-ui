@@ -32,7 +32,19 @@ const StyledMenu = styled.div`
   &.ui.menu .item:before {
     background: transparent;
   }
+  &.ui.menu .active.item {
+    color: #bebebe;
+    &:hover {
+      color: #bebebe;
+    }
+  }
 `
+
+const PATHS = {
+  nba: "/nba",
+  tracker: "/tracker",
+  standings: "/standings"
+}
 
 export default class extends Component {
   handleSeasonStats = () => {
@@ -48,6 +60,9 @@ export default class extends Component {
       teamStandingsModal()
     }
   }
+
+  getPathName = () => window.location.pathname
+
   render() {
     return (
       <FixedHeader>
@@ -61,15 +76,32 @@ export default class extends Component {
                     //   Season Stats
                     // </Menu.Item>
                   }
-                  <Menu.Item as={Link} to="/">
+                  <Menu.Item
+                    as={Link}
+                    to={PATHS.nba}
+                    active={this.getPathName() === PATHS.nba}
+                  >
                     Home
                   </Menu.Item>
-                  <Menu.Item as={Link} to="/tracker">
+                  <Menu.Item
+                    as={Link}
+                    to={PATHS.tracker}
+                    active={this.getPathName() === PATHS.tracker}
+                  >
                     Player Tracker
                   </Menu.Item>
-                  <Menu.Item onClick={this.handleStandings}>
+                  <Menu.Item
+                    as={Link}
+                    to={PATHS.standings}
+                    active={this.getPathName() === PATHS.standings}
+                  >
                     Standings
                   </Menu.Item>
+                  {
+                    // <Menu.Item onClick={this.handleStandings}>
+                    //   Standings
+                    // </Menu.Item>
+                  }
                 </Menu>
               </Grid.Column>
             </Grid.Row>

@@ -38,7 +38,7 @@ export default class extends Component {
         centered={false}
       >
         <Modal.Header as={StyledModalHeader}>Standings</Modal.Header>
-        {standings ? (
+        {standings && (
           <Modal.Content>
             <Tab
               panes={[
@@ -53,10 +53,14 @@ export default class extends Component {
               ]}
             />
           </Modal.Content>
-        ) : (
+        )}
+        {standings === null && (
           <Modal.Content>
             <LoadingSpinner />
           </Modal.Content>
+        )}
+        {standings === false && (
+          <div>Team standings unavailable at this time.</div>
         )}
       </Modal>
     )

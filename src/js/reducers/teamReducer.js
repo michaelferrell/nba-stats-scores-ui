@@ -25,7 +25,7 @@ export default (state = default_state, action) => {
     case "FETCH_TEAM_STANDINGS_ERROR":
       return {
         ...state,
-        standings: null
+        standings: false
       }
     case "FETCH_TEAM_SCHEDULE_SUCCESS":
       let schedule = { ...state.schedule }

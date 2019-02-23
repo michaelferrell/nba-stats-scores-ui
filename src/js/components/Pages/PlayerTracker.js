@@ -117,7 +117,7 @@ export default class extends Component {
     const fetching = this.props.schedule.fetching
     const { playerId } = this.state
     return (
-      <NarrowContainer>
+      <NarrowContainer marginTop={"4em"}>
         Monitor the stats of your favorite NBA players!
         <Section>
           <StyledDropdown>

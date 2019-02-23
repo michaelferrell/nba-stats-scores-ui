@@ -24,11 +24,11 @@ export default class extends Component {
             <Tab
               panes={[
                 {
-                  menuItem: "Eastern Conference",
+                  menuItem: "East",
                   render: () => <TeamStandingsTable data={standings.east} />
                 },
                 {
-                  menuItem: "Western Conference",
+                  menuItem: "West",
                   render: () => <TeamStandingsTable data={standings.west} />
                 }
               ]}
