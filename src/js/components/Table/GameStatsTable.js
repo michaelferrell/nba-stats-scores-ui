@@ -35,6 +35,8 @@ export default ({ data }) => (
 				<th class="center aligned">3p</th>
 				<th class="center aligned">3p%</th>
 				<th class="center aligned">Ft</th>
+				<th class="center aligned">Blk</th>
+				<th class="center aligned">Stl</th>
 				<th class="center aligned">+/-</th>
 			</Table.Row>
 		</thead>
@@ -78,6 +80,8 @@ export default ({ data }) => (
 						<td class="center aligned">
 							{key.ftm}/{key.fta}
 						</td>
+						<td class="center aligned">{key.blocks}</td>
+						<td class="center aligned">{key.steals}</td>
 						<td class="center aligned">{key.plusMinus}</td>
 					</Table.Row>
 				)
