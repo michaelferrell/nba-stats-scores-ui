@@ -5,8 +5,7 @@ export {
   fetchPlayerProfile,
   fetchTrackedPlayers,
   trackPlayer,
-  removeTrackedPlayer,
-  fetchPlayerSchedule
+  removeTrackedPlayer
 } from "./Player"
 
 export {

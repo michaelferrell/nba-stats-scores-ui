@@ -15,7 +15,6 @@ import {
   fetchTrackedPlayers,
   trackPlayer,
   removeTrackedPlayer,
-  fetchPlayerSchedule,
   fetchSchedule,
   getSchedule,
   filterByDate,
@@ -45,7 +44,6 @@ const mapDispatchToProps = dispatch => ({
   fetchTrackedPlayers: () => dispatch(fetchTrackedPlayers()),
   trackPlayer: id => dispatch(trackPlayer(id)),
   removeTrackedPlayer: id => dispatch(removeTrackedPlayer(id)),
-  fetchPlayerSchedule: id => dispatch(fetchPlayerSchedule(id)),
   // schedule actions
   fetchSchedule: () => dispatch(fetchSchedule()),
   getSchedule: () => dispatch(getSchedule()),

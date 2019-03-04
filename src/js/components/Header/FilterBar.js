@@ -67,10 +67,14 @@ export default class extends Component {
   }
 
   render() {
-    const { schedule, filterByDate, removeFilterByDate } = this.props
+    const { schedule, team, filterByDate, removeFilterByDate } = this.props
     const { showCalendar } = this.state
     let dateFilter = schedule.dateFilter
     const teamOptions = this.getTeamOptions()
+    let selected_team = "all"
+    if (team.selected.id) {
+      selected_team = team.selected.id.toString()
+    }
     return (
       <FixedFilterHeader>
         <NarrowContainer>
@@ -105,7 +109,7 @@ export default class extends Component {
                       onChange={(e, { value }) =>
                         this.handleFilterByTeam(value)
                       }
-                      defaultValue={teamOptions[0].value}
+                      defaultValue={selected_team}
                     />
                   </Menu.Item>
                 </Menu>

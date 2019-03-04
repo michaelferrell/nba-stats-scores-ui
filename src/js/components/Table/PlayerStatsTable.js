@@ -9,92 +9,26 @@ const StyledTable = styled.table`
   }
 `
 
-const RowHover = styled.tr`
-  &:hover td {
-    background-color: #444;
-  }
-`
-
-const SecondaryStat = styled.span`
-  opacity: 0.5;
-  font-size: 0.95em;
-  margin-left: 0.2em;
-`
-
-const StatItem = styled.div`
-  &.column {
-    text-align: center;
-    margin-right: 1em;
-    width: auto !important;
-  }
-`
-
-const StatName = styled.h4`
-  font-size: 1.1em;
-`
-
-const StatValue = styled.div`
-  font-size: 1em;
-  font-weight: bold;
-  margin-top: 0.2em;
-`
-
 export default ({ data }) => {
-  console.log('data',data)
+  let headers = data[0].map(stat => stat.name)
   return (
-    <Grid>
-      <Grid.Row>
-        <Grid.Column as={StatItem}>
-          <StatName>Fg</StatName>
-          <StatValue>{data.fgm}/{data.fga}</StatValue>
-        </Grid.Column>
-        <Grid.Column as={StatItem}>
-          <StatName>Fg%</StatName>
-          <StatValue>{data.fgp}</StatValue>
-        </Grid.Column>
-        <Grid.Column as={StatItem}>
-          <StatName>Ft</StatName>
-          <StatValue>{data.ftm}/{data.fta}</StatValue>
-        </Grid.Column>
-        <Grid.Column as={StatItem}>
-          <StatName>Ft%</StatName>
-          <StatValue>{data.ftp}</StatValue>
-        </Grid.Column>
-        <Grid.Column as={StatItem}>
-          <StatName>3p</StatName>
-          <StatValue>{data.tpm}/{data.tpa}</StatValue>
-        </Grid.Column>
-        <Grid.Column as={StatItem}>
-          <StatName>3p%</StatName>
-          <StatValue>{data.tpp}</StatValue>
-        </Grid.Column>
-      </Grid.Row>
-      <Grid.Row>
-        <Grid.Column as={StatItem}>
-          <StatName>Reb</StatName>
-          <StatValue>{data.totReb}</StatValue>
-        </Grid.Column>
-        <Grid.Column as={StatItem}>
-          <StatName>Off Reb</StatName>
-          <StatValue>{data.offReb}</StatValue>
-        </Grid.Column>
-        <Grid.Column as={StatItem}>
-          <StatName>Def Reb</StatName>
-          <StatValue>{data.defReb}</StatValue>
-        </Grid.Column>
-        <Grid.Column as={StatItem}>
-          <StatName>Blk</StatName>
-          <StatValue>{data.blocks}</StatValue>
-        </Grid.Column>
-        <Grid.Column as={StatItem}>
-          <StatName>Stl</StatName>
-          <StatValue>{data.steals}</StatValue>
-        </Grid.Column>
-        <Grid.Column as={StatItem}>
-          <StatName>Min</StatName>
-          <StatValue>{data.min}</StatValue>
-        </Grid.Column>
-      </Grid.Row>
-    </Grid>
+    <Table as={StyledTable} unstackable inverted>
+      <thead>
+        <Table.Row>
+          {headers.map(name => (
+            <Table.HeaderCell key={name}>{name}</Table.HeaderCell>
+          ))}
+        </Table.Row>
+      </thead>
+      <tbody>
+        {data.map((stats, idx) => (
+          <Table.Row key={idx}>
+            {stats.map(stat => (
+              <Table.Cell key={stat.name}>{stat.value}</Table.Cell>
+            ))}
+          </Table.Row>
+        ))}
+      </tbody>
+    </Table>
   )
 }

@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { Button, Dropdown, Icon, Grid } from "semantic-ui-react"
+import { Dropdown, Icon, Grid } from "semantic-ui-react"
 import styled, { css } from "styled-components"
 
 import { NarrowContainer } from "./../Layout/"
@@ -63,28 +63,7 @@ const DeleteIcon = styled.i`
   }
 `
 
-const PrimaryButton = styled.button`
-  &.ui.button {
-    margin-left: 0.4em;
-  }
-  &.ui.disabled.button,
-  &.ui.button:disabled {
-    opacity: 0.7 !important;
-  }
-  &.ui.disabled.button,
-  &.ui.button:disabled,
-  &.ui.disabled.button:hover,
-  &.ui.disabled.active.button {
-    pointer-events: auto !important;
-    cursor: not-allowed !important;
-    background-color: #2185d0 !important;
-    opacity: 0.7 !important;
-  }
-`
-
 export default class extends Component {
-  state = { playerId: null }
-
   componentDidMount() {
     const { player, fetchTrackedPlayers } = this.props
     if (player.tracked.length === 0) {
@@ -93,7 +72,6 @@ export default class extends Component {
   }
 
   formatPlayerOptions = (players, tracked) => {
-    console.log("formatPlayerOptions", players)
     return Object.keys(players).map(id => ({
       key: id,
       value: id,
@@ -111,11 +89,9 @@ export default class extends Component {
       trackPlayer,
       fetchPlayerProfile,
       removeTrackedPlayer,
-      fetchPlayerSchedule,
       playerStatsModal
     } = this.props
     const fetching = this.props.schedule.fetching
-    const { playerId } = this.state
     return (
       <NarrowContainer marginTop={"4em"}>
         Monitor the stats of your favorite NBA players!
@@ -126,20 +102,8 @@ export default class extends Component {
               search
               selection
               options={this.formatPlayerOptions(player.list, player.tracked)}
-              onChange={(e, { value }) => {
-                this.setState({ playerId: value })
-              }}
-              value={playerId}
-            />
-            <Button
-              as={PrimaryButton}
-              primary
-              content="Add"
-              disabled={!playerId}
-              onClick={() => {
-                trackPlayer(playerId)
-                this.setState({ playerId: null })
-              }}
+              onChange={(e, { value }) => trackPlayer(value)}
+              value={null}
             />
           </StyledDropdown>
         </Section>
@@ -151,9 +115,8 @@ export default class extends Component {
                 <ListItem key={id}>
                   <ListItemText
                     onClick={() => {
-                      fetchPlayerSchedule(id)
                       fetchPlayerProfile(id)
-                      closeAllModals()
+                      // closeAllModals()
                     }}
                   >
                     {player.list[id].name}
@@ -171,12 +134,16 @@ export default class extends Component {
           )}
         </Section>
         <Section>
-          {!fetching && player.selected && player.profile && (
+          {!fetching && player.selected && player.profile_success && (
             <PlayerDrawer
               id={player.selected}
-              bio={player.profile.bio}
-              stats={player.profile.stats}
+              {...player.profiles[player.selected]}
             />
+          )}
+          {!fetching && player.selected && player.profile_error && (
+            <div>
+            Failed to fetch player stats.
+            </div>
           )}
           {!fetching && player.selected && player.schedule && (
             <PlayerStatsList

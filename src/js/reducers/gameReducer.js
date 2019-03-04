@@ -1,6 +1,7 @@
 const default_state = {
   selected: null,
   boxscore: null,
+  boxscore_error: false,
   article: null
 }
 
@@ -11,11 +12,13 @@ export default (state = default_state, action) => {
       return {
         ...state,
         selected: { ...payload.game },
-        boxscore: { ...payload.boxscore }
+        boxscore: { ...payload.boxscore },
+        boxscore_error: false
       }
     case "FETCH_BOXSCORE_ERROR":
       return {
-        ...state
+        ...state,
+        boxscore_error: true
       }
     case "FETCH_RECAP_ARTICLE_SUCCESS":
       return {
