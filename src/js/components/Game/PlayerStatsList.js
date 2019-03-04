@@ -3,7 +3,6 @@ import styled from "styled-components"
 import { Button, Grid } from "semantic-ui-react"
 
 import { MainGrid, UnpaddedRow, UnpaddedColumn } from "./../Layout/"
-import PlayerStatsTable from "./../Table/PlayerStatsTable"
 import GameItem from "./Item"
 
 import { displayGameDate } from "./../../helpers/displayGameDate"
@@ -22,10 +21,6 @@ export default class extends Component {
   render() {
     const { player, game, playerStatsModal } = this.props
     const team_id = player.list[player.selected].team_id
-    // console.log('--------------')
-    // console.log('RENDER')
-    // console.log('game.selected',game.selected)
-    // console.log('player.list',player.list)
     return (
       <div>
         {player.schedule.map((game, idx) => (

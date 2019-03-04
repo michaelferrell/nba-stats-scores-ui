@@ -54,7 +54,7 @@ const getPageHeight = () => {
 export default class extends Component {
   componentDidUpdate() {
     const { team } = this.props
-    if (team.selected) {
+    if (team.selected.id) {
       handlePageScroll(team.selected.nextGameCode)
     }
   }
@@ -104,9 +104,9 @@ export default class extends Component {
           {Object.keys(filtered).length === 0 && !fetching && (
             <div>No games on this date.</div>
           )}
-          {Object.keys(filtered).length > 0 && !fetching && !player.selected && (
+          {Object.keys(filtered).length > 0 && !fetching && (
             <React.Fragment>
-              {!team.selected && !dateFilter && (
+              {!team.selected.id && !dateFilter && (
                 <Button
                   as={InvertedButton}
                   size="tiny"
@@ -118,7 +118,7 @@ export default class extends Component {
               )}
               <GameList {...this.props} />
               <MarginTop value={1.5}>
-                {!team.selected && !dateFilter && (
+                {!team.selected.id && !dateFilter && (
                   <Button
                     as={InvertedButton}
                     size="tiny"
@@ -146,6 +146,7 @@ export default class extends Component {
             handleClose={closeAllModals}
           />
         )}
+        {/*DELETE!*/}
         {modal.player_stats && (
           <PlayerStatsModal
             game={modal.player_stats}

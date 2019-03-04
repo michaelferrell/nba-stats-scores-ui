@@ -1,6 +1,6 @@
 const default_state = {
   standings: null,
-  selected: null,
+  selected: { id: null },
   schedule: {}
 }
 
@@ -10,12 +10,12 @@ export default (state = default_state, action) => {
     case "FETCH_SCHEDULE_SUCCESS":
       return {
         ...state,
-        selected: null
+        selected: {...default_state.selected}
       }
     case "GET_SCHEDULE_SUCCESS":
       return {
         ...state,
-        selected: null
+        selected: {...default_state.selected}
       }
     case "FETCH_TEAM_STANDINGS_SUCCESS":
       return {

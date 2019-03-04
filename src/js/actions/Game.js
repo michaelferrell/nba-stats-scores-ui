@@ -20,8 +20,12 @@ export const fetchBoxscore = game => dispatch => {
       fetchBoxscoreError(err)
     })
     .then(data => {
-      let boxscore = data.stats
-      dispatch(fetchBoxscoreSuccess({ boxscore, game }))
+      if (data) {
+        let boxscore = data.stats
+        dispatch(fetchBoxscoreSuccess({ boxscore, game }))
+      } else {
+        dispatch(fetchBoxscoreError(data))
+      }
     })
 }
 
