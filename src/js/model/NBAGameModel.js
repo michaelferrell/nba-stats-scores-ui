@@ -29,13 +29,7 @@ class NBAGameModel {
       city: vistor.tc,
       name: vistor.tn
     }
-    this.score = null
-    if (game.stt === "Final") {
-      this.score = {
-        home_team: parseInt(home.s),
-        visitor_team: parseInt(vistor.s)
-      }
-    }
+    this.score = this.setScore(game, activeGame)
     this.game_code = game.gcode.split("/")[0]
     this.playerOfTheGame = null
     if (game.ptsls && game.ptsls.pl.length > 0) {
@@ -60,12 +54,38 @@ class NBAGameModel {
     }
   }
 
-  setStatus(game) {
+  setScore(game, activeGame) {
+    let score = null
     if (game.stt === "Final") {
+      score = {
+        home_team: parseInt(game.h.s),
+        visitor_team: parseInt(game.v.s)
+      }
+    } else if (
+      activeGame &&
+      !activeGame.isGameActivated &&
+      activeGame.clock === ""
+    ) {
+      // sometimes the nba api is slow to update the game,
+      // check if game is final here
+      score = {
+        home_team: activeGame.hTeam.score,
+        visitor_team: activeGame.vTeam.score
+      }
+    }
+    return score
+  }
+
+  setStatus(game) {
+    let today = new Date()
+    if (
+      game.stt === "Final" ||
+      today.getDate() > new Date(game.etm).getDate()
+    ) {
       return "final"
     } else if (this.activeGame.isGameActivated) {
       return "active"
-    } else if (new Date(game.etm) > new Date()) {
+    } else if (new Date(game.etm) > today) {
       return "upcoming"
     }
   }
