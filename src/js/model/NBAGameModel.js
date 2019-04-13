@@ -6,7 +6,7 @@ import { formatClock } from "./../helpers/formatClock"
 import { formatPeriod } from "./../helpers/formatPeriod"
 
 class NBAGameModel {
-  constructor(game, activeGame = false) {
+  constructor(game, activeGame = false, playoffGame = false) {
     const home = game.h
     const vistor = game.v
     this.rawData = game
@@ -52,7 +52,19 @@ class NBAGameModel {
         visitor_team: parseInt(activeGame.vTeam.score)
       }
     }
-  }
+
+    // playoff game data
+    this.playoffs = false
+    if (playoffGame) {
+      let playoffs = playoffGame.playoffs
+      this.playoffs = {
+        roundNum: playoffs.roundNum,
+        gameNum: playoffs.gameNumInSeries,
+        home_team: playoffs.hTeam,
+        visitor_team: playoffs.vTeam
+      }
+    }
+ }
 
   setScore(game, activeGame) {
     let score = null

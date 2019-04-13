@@ -68,9 +68,21 @@ const filterScheduleSuccess = payload => ({
 //   )
 // }
 
+const PLAYOFF_URL =
+  "http://heroflicks.com/api/projects/nba-app/playoffgames.php"
+let is_playoffs = true
+
 export const fetchSchedule = () => dispatch => {
   dispatch(fetchScheduleRequest())
   let activeGames = []
+  let playoffGames = {}
+
+  if (is_playoffs) {
+    fetch(PLAYOFF_URL)
+      .then(response => (response ? response.json() : false))
+      .then(data => playoffGames = data)
+  }
+
   fetch(ACTIVE_GAMES_URL)
     .then(response => response.json())
     .catch(err => false)
@@ -90,7 +102,7 @@ export const fetchSchedule = () => dispatch => {
         schedule = local.schedule
       } else {
         activeGames = formatActiveGames(activeGames)
-        schedule = scheduleByMonth(data.lscd, activeGames)
+        schedule = scheduleByMonth(data.lscd, activeGames, playoffGames)
         Cabinet.set(NBA_LOCAL_STORAGE, { schedule })
       }
 

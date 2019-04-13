@@ -77,6 +77,13 @@ export default ({ game, oddNumber, handleClick }) => (
     }
   >
     <Card.Content>
+      {game.playoffs && (
+        <div>
+          <SecondaryText style={{fontSize: ".8em"}}>
+            R{game.playoffs.gameNum} Game {game.playoffs.gameNum}
+          </SecondaryText>
+        </div>
+      )}
       {game.period ? (
         <CardTitle>
           <ProgressText>
