@@ -5,6 +5,7 @@ let default_state = {
   fetching: false,
   full: {},
   filtered: {},
+  playoffs: [],
   active: null,
   dateFilter: null,
   dateFilterFrom: null,
@@ -25,6 +26,7 @@ export default (state = default_state, action) => {
         fetching: false,
         full: { ...payload.full },
         filtered: { ...payload.filtered },
+        playoffs: [...payload.playoffs],
         active: { ...payload.active },
         dateFilterFrom: payload.dateFilterFrom,
         dateFilterTo: payload.dateFilterTo

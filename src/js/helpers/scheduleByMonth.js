@@ -15,9 +15,9 @@ export const scheduleByMonth = (
   playoffGames = {}
 ) => {
   let schedule_by_month = {}
-  let playoff_games = []
+  let playoffs = []
   for (let i = 0; i < schedule.length; i++) {
-    playoff_games = schedule[i].mscd.g.filter(game => game.seri != "")
+    playoffs = schedule[i].mscd.g.filter(game => game.seri != "")
     // filter out playoff
     let games_in_month = schedule[i].mscd.g
       .filter(game => validDate(game.etm))
@@ -41,5 +41,5 @@ export const scheduleByMonth = (
       schedule_by_month[formatted.month] = formatted.games
     }
   }
-  return schedule_by_month
+  return { regular: schedule_by_month, playoffs }
 }

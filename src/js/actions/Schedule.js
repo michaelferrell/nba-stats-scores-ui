@@ -91,6 +91,7 @@ export const fetchSchedule = () => dispatch => {
     .then(response => (response ? response.json() : false))
     .then(data => {
       let schedule
+      let playoffs = []
       let isOffline = false
       if (!data) {
         const local = Cabinet.get(NBA_LOCAL_STORAGE, {})
@@ -102,7 +103,9 @@ export const fetchSchedule = () => dispatch => {
         schedule = local.schedule
       } else {
         activeGames = formatActiveGames(activeGames)
-        schedule = scheduleByMonth(data.lscd, activeGames, playoffGames)
+        let result = scheduleByMonth(data.lscd, activeGames, playoffGames)
+        schedule = result.regular
+        playoffs = result.playoffs
         Cabinet.set(NBA_LOCAL_STORAGE, { schedule })
       }
 
@@ -123,6 +126,7 @@ export const fetchSchedule = () => dispatch => {
         fetchScheduleSuccess({
           full: schedule,
           filtered,
+          playoffs,
           active: activeGames,
           dateFilterFrom: today,
           dateFilterTo: tomorrow

@@ -80,7 +80,7 @@ export default ({ game, oddNumber, handleClick }) => (
       {game.playoffs && (
         <div>
           <SecondaryText style={{fontSize: ".8em"}}>
-            R{game.playoffs.gameNum} Game {game.playoffs.gameNum}
+            R{game.playoffs.roundNum} Game {game.playoffs.gameNum}
           </SecondaryText>
         </div>
       )}
