@@ -112,15 +112,19 @@ export const fetchSchedule = () => dispatch => {
       let filtered = {}
       const today = getTodaysDate()
       const tomorrow = getTomorrowsDate(today)
+      const month_name = MONTH_NAMES[today.getMonth()]
 
-      schedule[MONTH_NAMES[today.getMonth()]].map(g => {
-        if (getDatesInRange(DAYS_AHEAD, today).indexOf(g.game_code) > -1) {
-          if (filtered[g.game_code] === undefined) {
-            filtered[g.game_code] = { games: [], date: g.date }
+      // if current month is in the nba season
+      if (Object.keys(schedule).indexOf(month_name) > -1) {
+        schedule[month_name].map(g => {
+          if (getDatesInRange(DAYS_AHEAD, today).indexOf(g.game_code) > -1) {
+            if (filtered[g.game_code] === undefined) {
+              filtered[g.game_code] = { games: [], date: g.date }
+            }
+            filtered[g.game_code].games.push(g)
           }
-          filtered[g.game_code].games.push(g)
-        }
-      })
+        })
+      }
 
       dispatch(
         fetchScheduleSuccess({

@@ -59,7 +59,7 @@ const CloseIcon = styled.i`
 `
 
 const minDate = new Date("9/1/18")
-const maxDate = new Date("5/1/19")
+const maxDate = new Date("6/30/19")
 
 export default ({ handleChange, handleClose, open, value, trigger }) => (
   <Popup basic on="click" position="bottom left" open={open} trigger={trigger}>

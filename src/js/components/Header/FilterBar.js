@@ -39,9 +39,6 @@ const LinkItem = styled.a`
   }
 `
 
-const minDate = new Date("9/1/18")
-const maxDate = new Date("5/1/19")
-
 export default class extends Component {
   state = { showCalendar: false }
 
