@@ -43,7 +43,8 @@ const StyledMenu = styled.div`
 const PATHS = {
   nba: "/nba",
   stats: "/stats",
-  standings: "/standings"
+  standings: "/standings",
+  summerleague: "/summerleague"
 }
 
 export default class extends Component {
@@ -96,6 +97,13 @@ export default class extends Component {
                     active={this.getPathName() === PATHS.standings}
                   >
                     Standings
+                  </Menu.Item>
+                  <Menu.Item
+                    as={Link}
+                    to={PATHS.summerleague}
+                    active={this.getPathName() === PATHS.summerleague}
+                  >
+                    Summer League
                   </Menu.Item>
                   {
                     // <Menu.Item onClick={this.handleStandings}>

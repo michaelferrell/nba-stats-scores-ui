@@ -9,7 +9,11 @@ let default_state = {
   active: null,
   dateFilter: null,
   dateFilterFrom: null,
-  dateFilterTo: null
+  dateFilterTo: null,
+  summerleague: {
+    schedule: {},
+    fetching: false
+  }
 }
 
 export default (state = default_state, action) => {
@@ -86,6 +90,30 @@ export default (state = default_state, action) => {
       return {
         ...state,
         dateFilter: null
+      }
+    case "FETCH_SUMMER_LEAGUE_REQUEST":
+      return {
+        ...state,
+        summerleague: {
+          ...state.summerleague,
+          fetching: true
+        }
+      }
+    case "FETCH_SUMMER_LEAGUE_SUCCESS":
+      return {
+        ...state,
+        summerleague: {
+          schedule: {...payload},
+          fetching: false
+        }
+      }
+    case "FETCH_SUMMER_LEAGUE_ERROR":
+      return {
+        ...state,
+        summerleague: {
+          schedule: {},
+          fetching: false
+        }
       }
     default:
       return state

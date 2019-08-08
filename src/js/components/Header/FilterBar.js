@@ -43,12 +43,14 @@ export default class extends Component {
   state = { showCalendar: false }
 
   getTeamOptions = () => {
-    let options = Object.keys(TEAMS).map(key => {
-      return {
-        text: TEAMS[key].city + " " + TEAMS[key].name,
-        value: key
-      }
-    })
+    let options = Object.keys(TEAMS)
+      .filter(t => TEAMS[t].isNBAFranchise)
+      .map(t => {
+        return {
+          text: TEAMS[t].city + " " + TEAMS[t].name,
+          value: t
+        }
+      })
     options.unshift({ text: "Team: All", value: "all" })
     return options
   }

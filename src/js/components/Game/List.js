@@ -19,21 +19,20 @@ const GroupTitle = styled.div`
 
 export default class extends Component {
   render() {
-    const { schedule, gameDetailModal } = this.props
-    let filtered = schedule.filtered
+    const { items, handleClick } = this.props
     return (
       <div>
-        {Object.keys(filtered).map(groupId => (
+        {Object.keys(items).map(groupId => (
           <MarginTop id={groupId} key={groupId}>
-            <GroupTitle>{displayGameDate(filtered[groupId].date)}</GroupTitle>
+            <GroupTitle>{displayGameDate(items[groupId].date)}</GroupTitle>
             <Grid as={MainGrid} columns="two">
               <Grid.Row as={UnpaddedRow}>
-                {filtered[groupId].games.map((game, idx) => (
+                {items[groupId].games.map((game, idx) => (
                   <Grid.Column as={UnpaddedColumn} key={game.game_id}>
                     {game.status === "final" ? (
                       <GameItem
                         game={game}
-                        handleClick={game => gameDetailModal(game)}
+                        handleClick={game => handleClick(game)}
                         oddNumber={idx % 2}
                       />
                     ) : game.status === "active" ? (

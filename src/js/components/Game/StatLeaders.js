@@ -81,6 +81,14 @@ const StatValueLarge = styled.div`
   font-size: 1.1em;
   opacity: 0.9;
 `
+const PlaceholderImage = styled.div`
+  width: 84px;
+  height: 84px;
+  // background-color: #ddd;
+  border: 2px solid #222;
+  border-radius: 50%;
+  margin: 1em auto 0.5em;
+`
 
 const getPlayerHeadshotUrl = ({ playerId, teamId }) =>
   "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/" +
@@ -186,19 +194,35 @@ export default ({ stats, players }) => {
                 <Grid>
                   <Grid.Row>
                     <Grid.Column as={StatColumn}>
-                      <PlayerHeadshot
-                        playerId={h_pts_leader}
-                        teamId={players[h_pts_leader].team_id}
-                      />
-                      <PlayerName>{players[h_pts_leader].name}</PlayerName>
+                      {players[h_pts_leader] ? (
+                        <PlayerHeadshot
+                          playerId={h_pts_leader}
+                          teamId={players[h_pts_leader].team_id}
+                        />
+                      ) : (
+                        <PlaceholderImage />
+                      )}
+                      <PlayerName>
+                        {players[h_pts_leader]
+                          ? players[h_pts_leader].name
+                          : h_leader.points.players[0].firstName}
+                      </PlayerName>
                       <StatValue>{h_pts}</StatValue>
                     </Grid.Column>
                     <Grid.Column as={StatColumn}>
-                      <PlayerHeadshot
-                        playerId={v_pts_leader}
-                        teamId={players[v_pts_leader].team_id}
-                      />
-                      <PlayerName>{players[v_pts_leader].name}</PlayerName>
+                      {players[v_pts_leader] ? (
+                        <PlayerHeadshot
+                          playerId={v_pts_leader}
+                          teamId={players[v_pts_leader].team_id}
+                        />
+                      ) : (
+                        <PlaceholderImage />
+                      )}
+                      <PlayerName>
+                        {players[v_pts_leader]
+                          ? players[v_pts_leader].name
+                          : v_leader.points.players[0].firstName}
+                      </PlayerName>
                       <StatValue>{v_pts}</StatValue>
                     </Grid.Column>
                   </Grid.Row>
@@ -209,19 +233,35 @@ export default ({ stats, players }) => {
                 <Grid>
                   <Grid.Row>
                     <Grid.Column as={StatColumn}>
-                      <PlayerHeadshot
-                        playerId={h_ast_leader}
-                        teamId={players[h_ast_leader].team_id}
-                      />
-                      <PlayerName>{players[h_ast_leader].name}</PlayerName>
+                      {players[h_ast_leader] ? (
+                        <PlayerHeadshot
+                          playerId={h_ast_leader}
+                          teamId={players[h_ast_leader].team_id}
+                        />
+                      ) : (
+                        <PlaceholderImage />
+                      )}
+                      <PlayerName>
+                        {players[h_ast_leader]
+                          ? players[h_ast_leader].name
+                          : h_leader.assists.players[0].firstName}
+                      </PlayerName>
                       <StatValue>{h_ast}</StatValue>
                     </Grid.Column>
                     <Grid.Column as={StatColumn}>
-                      <PlayerHeadshot
-                        playerId={v_ast_leader}
-                        teamId={players[v_ast_leader].team_id}
-                      />
-                      <PlayerName>{players[v_ast_leader].name}</PlayerName>
+                      {players[v_ast_leader] ? (
+                        <PlayerHeadshot
+                          playerId={v_ast_leader}
+                          teamId={players[v_ast_leader].team_id}
+                        />
+                      ) : (
+                        <PlaceholderImage />
+                      )}
+                      <PlayerName>
+                        {players[v_ast_leader]
+                          ? players[v_ast_leader].name
+                          : v_leader.assists.players[0].firstName}
+                      </PlayerName>
                       <StatValue>{v_ast}</StatValue>
                     </Grid.Column>
                   </Grid.Row>
@@ -232,19 +272,35 @@ export default ({ stats, players }) => {
                 <Grid>
                   <Grid.Row>
                     <Grid.Column as={StatColumn}>
-                      <PlayerHeadshot
-                        playerId={h_reb_leader}
-                        teamId={players[h_reb_leader].team_id}
-                      />
-                      <PlayerName>{players[h_reb_leader].name}</PlayerName>
+                      {players[h_reb_leader] ? (
+                        <PlayerHeadshot
+                          playerId={h_reb_leader}
+                          teamId={players[h_reb_leader].team_id}
+                        />
+                      ) : (
+                        <PlaceholderImage />
+                      )}
+                      <PlayerName>
+                        {players[h_reb_leader]
+                          ? players[h_reb_leader].name
+                          : h_leader.rebounds.players[0].firstName}
+                      </PlayerName>
                       <StatValue>{h_reb}</StatValue>
                     </Grid.Column>
                     <Grid.Column as={StatColumn}>
-                      <PlayerHeadshot
-                        playerId={v_reb_leader}
-                        teamId={players[v_reb_leader].team_id}
-                      />
-                      <PlayerName>{players[v_reb_leader].name}</PlayerName>
+                      {players[v_reb_leader] ? (
+                        <PlayerHeadshot
+                          playerId={v_reb_leader}
+                          teamId={players[v_reb_leader].team_id}
+                        />
+                      ) : (
+                        <PlaceholderImage />
+                      )}
+                      <PlayerName>
+                        {players[v_reb_leader]
+                          ? players[v_reb_leader].name
+                          : v_leader.rebounds.players[0].firstName}
+                      </PlayerName>
                       <StatValue>{v_reb}</StatValue>
                     </Grid.Column>
                   </Grid.Row>

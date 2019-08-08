@@ -78,7 +78,7 @@ export default class extends Component {
       value: id,
       text: players[id].name,
       team_id: players[id].team_id,
-      disabled: tracked.indexOf(id) > -1
+      // disabled: tracked.indexOf(id) > -1
     }))
   }
 

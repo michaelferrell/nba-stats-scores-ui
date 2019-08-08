@@ -2,6 +2,8 @@ import Cabinet from "cabinet-storage"
 
 import { filterByTeam } from "./"
 
+import TeamScheduleModel from "./../model/TeamScheduleModel"
+
 import { formatActiveGames } from "./../helpers/formatActiveGames"
 import { scheduleByMonth } from "./../helpers/scheduleByMonth"
 import { scheduleByDate } from "./../helpers/scheduleByDate"
@@ -14,6 +16,7 @@ import { formatGameCode } from "./../helpers/formatGameCode"
 import {
   ACTIVE_GAMES_URL,
   SCHEDULE_URL,
+  SUMMERLEAGUE_URL,
   NBA_LOCAL_STORAGE,
   MONTH_NAMES,
   DAYS_AHEAD
@@ -80,7 +83,7 @@ export const fetchSchedule = () => dispatch => {
   if (is_playoffs) {
     fetch(PLAYOFF_URL)
       .then(response => (response ? response.json() : false))
-      .then(data => playoffGames = data)
+      .then(data => (playoffGames = data))
   }
 
   fetch(ACTIVE_GAMES_URL)
@@ -175,6 +178,47 @@ export const getSchedule = () => (dispatch, getState) => {
       dateFilterTo: tomorrow
     })
   )
+}
+
+const fetchSummerLeagueRequest = () => ({
+  type: "FETCH_SUMMER_LEAGUE_REQUEST"
+})
+
+const fetchSummerLeagueSuccess = payload => ({
+  type: "FETCH_SUMMER_LEAGUE_SUCCESS",
+  payload
+})
+
+const fetchSummerLeagueError = payload => ({
+  type: "FETCH_SUMMER_LEAGUE_ERROR",
+  payload
+})
+
+export const fetchSummerLeague = () => dispatch => {
+  dispatch(fetchSummerLeagueRequest())
+
+  let schedule = {}
+
+  fetch(SUMMERLEAGUE_URL)
+    .then(response => response.json())
+    .catch(err => false)
+    .then(data => {
+      if (data && data.length) {
+        data.map(g => {
+          let gameModel = new TeamScheduleModel(g)
+          if (schedule[gameModel.game_code] === undefined) {
+            schedule[gameModel.game_code] = {
+              games: [],
+              date: gameModel.date
+            }
+          }
+          schedule[gameModel.game_code].games.push(gameModel)
+        })
+        dispatch(fetchSummerLeagueSuccess(schedule))
+      } else {
+        dispatch(fetchSummerLeagueError(data))
+      }
+    })
 }
 
 const getUpcoming = payload => ({

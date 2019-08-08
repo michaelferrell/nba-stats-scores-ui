@@ -7,6 +7,7 @@ import FilterBar from "./Header/FilterBar"
 import HomePage from "./Pages/Home"
 import PlayerTrackerPage from "./Pages/PlayerTracker"
 import TeamStandingsPage from "./Pages/TeamStandings"
+import SummerLeaguePage from "./Pages/SummerLeague"
 
 import { COLOR } from "./../constants/"
 
@@ -46,6 +47,10 @@ export default class extends Component {
         <Route
           path="/standings"
           render={() => <TeamStandingsPage {...this.props} />}
+        />
+        <Route
+          path="/summerleague"
+          render={() => <SummerLeaguePage {...this.props} />}
         />
       </AppBackground>
     )

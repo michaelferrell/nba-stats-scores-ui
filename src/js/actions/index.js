@@ -11,6 +11,7 @@ export {
 export {
   fetchSchedule,
   getSchedule,
+  fetchSummerLeague,
   getPreviousGames,
   getUpcomingGames,
   getLiveGame,

@@ -99,7 +99,10 @@ export const filterByTeam = (teamId, dateFilter) => (dispatch, getState) => {
               gameModel = new TeamScheduleModel(g, activeGames[g.gameId])
               nextGameCode = gameModel.game_code // use active gamecode
             } else {
+              console.log('------------------')
+              console.log('g',g)
               gameModel = new TeamScheduleModel(g)
+              console.log('gameModel',gameModel)
               if (!nextGameCode && gameModel.score === null) {
                 nextGameCode = gameModel.game_code // use nextgamecode
               }

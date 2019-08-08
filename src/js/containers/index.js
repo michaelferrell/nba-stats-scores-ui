@@ -17,6 +17,7 @@ import {
   removeTrackedPlayer,
   fetchSchedule,
   getSchedule,
+  fetchSummerLeague,
   filterByDate,
   removeFilterByDate,
   getPreviousGames,
@@ -47,6 +48,7 @@ const mapDispatchToProps = dispatch => ({
   // schedule actions
   fetchSchedule: () => dispatch(fetchSchedule()),
   getSchedule: () => dispatch(getSchedule()),
+  fetchSummerLeague: () => dispatch(fetchSummerLeague()),
   filterByDate: (schedule, date) => dispatch(filterByDate(schedule, date)),
   removeFilterByDate: () => dispatch(removeFilterByDate()),
   getPreviousGames: (schedule, filtered, dateFilterFrom) =>

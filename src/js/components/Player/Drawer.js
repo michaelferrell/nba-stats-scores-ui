@@ -50,6 +50,9 @@ const HeadshotCircle = styled.div`
 const StatContainer = styled.div`
   border: 1px solid #626262;
   width: 410px;
+  @media only screen and (max-width: 520px) {
+    width: 100%;
+  }
 `
 
 const LargeStatBox = styled.div`
@@ -69,6 +72,9 @@ const StatValue = styled.div`
   font-size: 2em;
   font-weight: 500;
   line-height: 1;
+`
+const ScrollHorizontal = styled.div`
+  overflow-x: auto;
 `
 
 const PlayerHeadshot = (playerId, teamId) => (
@@ -208,18 +214,20 @@ export default class extends Component {
           </Grid.Row>
           <Grid.Row>
             <Grid.Column width={16}>
-              <Tab
-                panes={[
-                  {
-                    menuItem: "Per Game",
-                    render: () => <PlayerStatsTable data={per} />
-                  },
-                  {
-                    menuItem: "Season Totals",
-                    render: () => <PlayerStatsTable data={tot} />
-                  }
-                ]}
-              />
+              <ScrollHorizontal>
+                <Tab
+                  panes={[
+                    {
+                      menuItem: "Per Game",
+                      render: () => <PlayerStatsTable data={per} />
+                    },
+                    {
+                      menuItem: "Season Totals",
+                      render: () => <PlayerStatsTable data={tot} />
+                    }
+                  ]}
+                />
+              </ScrollHorizontal>
             </Grid.Column>
           </Grid.Row>
         </Grid>

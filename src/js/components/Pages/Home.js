@@ -116,7 +116,10 @@ export default class extends Component {
                   Load Previous
                 </Button>
               )}
-              <GameList {...this.props} />
+              <GameList
+                items={filtered}
+                handleClick={this.props.gameDetailModal}
+              />
               <MarginTop value={1.5}>
                 {!team.selected.id && !dateFilter && (
                   <Button
