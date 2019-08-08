@@ -141,7 +141,10 @@ export default class extends Component {
   render() {
     const { id, bio, stats } = this.props
     let team = TEAMS[parseInt(bio.team_id)]
-    let draftTeam = TEAMS[parseInt(bio.draft.teamId)].tricode
+    let draftTeam = null
+    if (TEAMS[parseInt(bio.draft.teamId)]) {
+      draftTeam = TEAMS[parseInt(bio.draft.teamId)].tricode
+    }
     let season_total = null
     let per = null
     let tot = null
@@ -155,10 +158,10 @@ export default class extends Component {
       <React.Fragment>
         <Grid>
           <Grid.Row>
-            <Grid.Column width={4}>
+            <Grid.Column mobile={16} tablet={4} computer={4}>
               <PlayerHeadshot playerId={id} teamId={bio.team_id} />
             </Grid.Column>
-            <Grid.Column width={12}>
+            <Grid.Column mobile={16} tablet={12} computer={12}>
               <PlayerName>{bio.name}</PlayerName>
               <PlayerMainInfo>
                 #{bio.jersey} {bio.pos} | {bio.height}, {bio.weight} lbs |{" "}
@@ -170,10 +173,12 @@ export default class extends Component {
               <PlayerInfo>
                 <span>Prior:</span> {bio.collegeName}
               </PlayerInfo>
-              <PlayerInfo>
-                <span>Drafted:</span> {bio.draft.seasonYear}: Round{" "}
-                {bio.draft.roundNum}, Pick {bio.draft.pickNum} by {draftTeam}
-              </PlayerInfo>
+              {draftTeam && (
+                <PlayerInfo>
+                  <span>Drafted:</span> {bio.draft.seasonYear}: Round{" "}
+                  {bio.draft.roundNum}, Pick {bio.draft.pickNum} by {draftTeam}
+                </PlayerInfo>
+              )}
               {parseInt(bio.yearsPro) > 0 && (
                 <PlayerInfo>
                   <span>Years Pro:</span> {bio.yearsPro}

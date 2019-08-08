@@ -3,6 +3,7 @@ const default_state = {
   tracked: [],
   selected: null,
   profiles: {},
+  fetching: false,
   profile_success: false,
   profile_error: false,
   schedule: null
@@ -22,6 +23,11 @@ export default (state = default_state, action) => {
         ...state,
         list: {}
       }
+    case "FETCH_PLAYER_PROFILE_REQUEST":
+      return {
+        ...state,
+        fetching: true
+      }
     case "FETCH_PLAYER_PROFILE_SUCCESS":
       let profiles = { ...state.profiles }
       if (profiles[payload.id] === undefined) {
@@ -29,6 +35,7 @@ export default (state = default_state, action) => {
       }
       return {
         ...state,
+        fetching: false,
         profile_success: true,
         profile_error: false,
         selected: payload.id,
@@ -37,6 +44,7 @@ export default (state = default_state, action) => {
     case "FETCH_PLAYER_PROFILE_ERROR":
       return {
         ...state,
+        fetching: false,
         profile_success: false,
         profile_error: true,
         selected: payload.id

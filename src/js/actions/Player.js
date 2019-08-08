@@ -42,6 +42,9 @@ export const fetchPlayers = () => dispatch => {
   }
 }
 
+const fetchPlayerProfileRequest = () => ({
+  type: "FETCH_PLAYER_PROFILE_REQUEST"
+})
 const fetchPlayerProfileSuccess = payload => ({
   type: "FETCH_PLAYER_PROFILE_SUCCESS",
   payload
@@ -52,6 +55,7 @@ const fetchPlayerProfileError = payload => ({
 })
 
 export const fetchPlayerProfile = id => dispatch => {
+  dispatch(fetchPlayerProfileRequest())
   let players = Cabinet.get(LOCAL_STORAGE_ALL_PLAYERS)
   let player = players[id]
   fetch(PLAYER_PROFILE_URL + "?player_id=" + id)

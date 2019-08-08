@@ -42,7 +42,7 @@ const StyledMenu = styled.div`
 
 const PATHS = {
   nba: "/nba",
-  tracker: "/tracker",
+  stats: "/stats",
   standings: "/standings"
 }
 
@@ -85,10 +85,10 @@ export default class extends Component {
                   </Menu.Item>
                   <Menu.Item
                     as={Link}
-                    to={PATHS.tracker}
-                    active={this.getPathName() === PATHS.tracker}
+                    to={PATHS.stats}
+                    active={this.getPathName() === PATHS.stats}
                   >
-                    Player Tracker
+                    Player Stats
                   </Menu.Item>
                   <Menu.Item
                     as={Link}

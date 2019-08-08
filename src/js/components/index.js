@@ -40,7 +40,7 @@ export default class extends Component {
           )}
         />
         <Route
-          path="/tracker"
+          path="/stats"
           render={() => <PlayerTrackerPage {...this.props} />}
         />
         <Route

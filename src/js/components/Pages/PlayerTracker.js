@@ -5,6 +5,7 @@ import styled, { css } from "styled-components"
 import { NarrowContainer } from "./../Layout/"
 import PlayerDrawer from "./../Player/Drawer"
 import PlayerStatsList from "./../Game/PlayerStatsList"
+import LoadingSpinner from "./../Spinner/LoadingSpinner"
 
 import { COLOR } from "./../../constants/"
 
@@ -94,20 +95,25 @@ export default class extends Component {
     const fetching = this.props.schedule.fetching
     return (
       <NarrowContainer marginTop={"4em"}>
-        Monitor the stats of your favorite NBA players!
+        Compare stats of your favorite NBA players
         <Section>
           <StyledDropdown>
             <Dropdown
-              placeholder="Search players"
+              placeholder="Search active players"
               search
               selection
               options={this.formatPlayerOptions(player.list, player.tracked)}
-              onChange={(e, { value }) => trackPlayer(value)}
+              onChange={(e, { value }) => {
+                fetchPlayerProfile(value)
+                // dont add player to tracked list for now
+                // trackPlayer(value)
+              }}
               value={null}
             />
           </StyledDropdown>
         </Section>
-        <Section>
+        {/*dont show tracked player section for now*/}
+        <Section style={{display: "none"}}>
           <h4>Tracked Players:</h4>
           {Object.keys(player.list).length > 0 && player.tracked.length > 0 ? (
             <List>
@@ -134,24 +140,30 @@ export default class extends Component {
           )}
         </Section>
         <Section>
-          {!fetching && player.selected && player.profile_success && (
-            <PlayerDrawer
-              id={player.selected}
-              {...player.profiles[player.selected]}
-            />
-          )}
-          {!fetching && player.selected && player.profile_error && (
-            <div>
-            Failed to fetch player stats.
-            </div>
-          )}
-          {!fetching && player.selected && player.schedule && (
-            <PlayerStatsList
-              player={player}
-              game={game}
-              playerStatsModal={playerStatsModal}
-            />
-          )}
+          {player.fetching && <LoadingSpinner />}
+          {!fetching &&
+            !player.fetching &&
+            player.selected &&
+            player.profile_success && (
+              <PlayerDrawer
+                id={player.selected}
+                {...player.profiles[player.selected]}
+              />
+            )}
+          {!fetching &&
+            !player.fetching &&
+            player.selected &&
+            player.profile_error && <div>Failed to fetch player stats.</div>}
+          {!fetching &&
+            !player.fetching &&
+            player.selected &&
+            player.schedule && (
+              <PlayerStatsList
+                player={player}
+                game={game}
+                playerStatsModal={playerStatsModal}
+              />
+            )}
         </Section>
       </NarrowContainer>
     )
