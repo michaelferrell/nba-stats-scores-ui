@@ -14,6 +14,7 @@ export const formatDate = date_str => {
     year: date.getFullYear(),
     day: day,
     day_abbr: day.substring(0, 3),
-    shortened: shortened
+    shortened: shortened,
+    original: date_str
   }
 }

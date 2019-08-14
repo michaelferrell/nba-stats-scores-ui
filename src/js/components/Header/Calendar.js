@@ -58,8 +58,8 @@ const CloseIcon = styled.i`
   cursor: pointer;
 `
 
-const minDate = new Date("9/1/18")
-const maxDate = new Date("6/30/19")
+const minDate = new Date("8/1/19")
+const maxDate = new Date("6/30/20")
 
 export default ({ handleChange, handleClose, open, value, trigger }) => (
   <Popup basic on="click" position="bottom left" open={open} trigger={trigger}>

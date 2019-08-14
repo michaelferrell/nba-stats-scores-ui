@@ -17,6 +17,7 @@ import {
   ACTIVE_GAMES_URL,
   SCHEDULE_URL,
   SUMMERLEAGUE_URL,
+  PLAYOFF_URL,
   NBA_LOCAL_STORAGE,
   MONTH_NAMES,
   DAYS_AHEAD
@@ -71,9 +72,12 @@ const filterScheduleSuccess = payload => ({
 //   )
 // }
 
-const PLAYOFF_URL =
-  "http://heroflicks.com/api/projects/nba-app/playoffgames.php"
-let is_playoffs = true
+const isPreason = gameDate => new Date() < new Date(gameDate)
+
+const getSeasonStartDate = d =>
+  d.year + "-" + d.month_number + "-" + d.date + "T00:00:00"
+
+let is_playoffs = false
 
 export const fetchSchedule = () => dispatch => {
   dispatch(fetchScheduleRequest())
@@ -113,7 +117,14 @@ export const fetchSchedule = () => dispatch => {
       }
 
       let filtered = {}
-      const today = getTodaysDate()
+      let today = getTodaysDate()
+
+      let firstGameDate = getSeasonStartDate(schedule.October[0].date)
+      // if season hasnt started, set date to first game date so we actually display some games
+      if (isPreason(firstGameDate)) {
+        today = new Date(firstGameDate)
+      }
+
       const tomorrow = getTomorrowsDate(today)
       const month_name = MONTH_NAMES[today.getMonth()]
 

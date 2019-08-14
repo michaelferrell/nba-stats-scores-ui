@@ -461,6 +461,8 @@ export const PLAYER_PROFILE_URL =
   "http://heroflicks.com/api/projects/nba-app/playerprofile.php"
 export const SUMMERLEAGUE_URL =
   "http://heroflicks.com/api/projects/nba-app/summerleague.php"
+export const PLAYOFF_URL =
+  "http://heroflicks.com/api/projects/nba-app/playoffgames.php"
 export const DAYS_AHEAD = 1
 export const NBA_LOCAL_STORAGE = "NBA_LOCAL_STORAGE"
 export const LOCAL_STORAGE_ALL_PLAYERS = "LOCAL_STORAGE_ALL_PLAYERS"
