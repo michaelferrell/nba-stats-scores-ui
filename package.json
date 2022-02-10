@@ -60,7 +60,7 @@
     "less": "^2.7.3",
     "less-loader": "^4.1.0",
     "mocha": "^5.1.1",
-    "node-sass": "^4.9.3",
+    "node-sass": "^7.0.0",
     "nyc": "^11.7.1",
     "prettier": "1.12.1",
     "prettylint": "1.0.0",
